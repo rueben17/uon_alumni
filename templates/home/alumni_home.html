@@ -5,6 +5,16 @@
 
 {% block content %}
 
-    <p>Welcome to the UoN Alumni Homepage</p>
+        <div  class="container mx-auto min-h-screen" style="max-width: 1700px;important;">
+            {% include "snippets/navbar.html" %}
+
+            <section class="min-h-screen bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm mx-auto" style="max-width: 1700px;">
+                    <p>Welcome</p>
+            </section>
+
+            {% include "snippets/footer.html" %}
+        </div>
+
+    
 
 {% endblock content %}

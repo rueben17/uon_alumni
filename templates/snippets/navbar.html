@@ -1,0 +1,200 @@
+<!-- Navbar -->
+        <header class=" bg-white mb-1 w-full py-4 px-2  text-black ">
+            <div class="flex items-center justify-between mx-auto max-w-7xl">
+                <div class="">
+                    {% comment %} {% for image in banner_images %}
+                        <img src="{{image.logo.url}}"  alt="" class="h-24 w-24 md:py-0 g-image  ">
+                    {% endfor %} {% endcomment %}
+                </div>
+
+                <div class=" gap-3 relative hidden space-x-1 md:inline-flex" x-data="{ one: false, two: false }">
+                    <a href="" class="rounded-full btn btn-sm btn-white ">Home</a>
+                    
+                    <div class="relative">
+                    <button class="flex items-center tracking-wider rounded-full btn btn-sm btn-white" @click="one = true">
+                        About
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        class="flex-none w-4 h-4 ml-1 -mr-1 transition duration-200 ease-out transform"
+                        :class="{ 'rotate-180': one }"
+                        >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute top-0 z-50 w-screen max-w-md p-2 mx-0 my-12 text-sm text-gray-800 transform bg-white rounded shadow lg:left-1/2 lg:-translate-x-1/2"
+                        x-show.transition.in.opacity.out.opacity="one"
+                        @click.away="one = false"
+                        x-cloak>
+                        <div class="grid grid-cols-2 gap-1 mb-1 ">
+                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white">
+                            <p class="font-semibold text-sm tracking-wider">History</p>
+                            <span class="text-xs">Our History since formation 2005.</span>
+                        </a>
+                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <p class="font-semibold tracking-wider">Executive Committee</p>
+                            <span class="text-xs">Our Executive Committee Members.</span>
+                        </a>
+                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <p class="font-semibold tracking-wider">Secretariat</p>
+                            <span class="text-xs">Meet The Secretariat.</span>
+                        </a>
+                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <p class="font-semibold tracking-wider">Chapters</p>
+                            <span class="text-xs">All The Chapters.</span>
+                        </a>
+                        <a href="" class="px-1.5 py-2 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <p class="font-semibold tracking-wider">Mission, Vision & Core Values</p>
+                            <span class="text-xs">What UoNAA Stands For.</span>
+                        </a>
+                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <p class="font-semibold tracking-wider">Partners</p>
+                            <span class="text-xs">Whom We Work With.</span>
+                        </a>
+                        </div>
+
+                    </div>
+                    </div>
+
+                    <div class="relative">
+                    <button class="flex items-center tracking-wider rounded-full btn btn-sm btn-white" @click="two = true">
+                        Membership
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        class="flex-none w-4 h-4 ml-1 -mr-1 transition duration-200 ease-out transform"
+                        :class="{ 'rotate-180': two }"
+                        >
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute top-0 z-50 w-screen max-w-md p-2 mx-0 my-12 text-sm text-gray-800 transform bg-white rounded shadow lg:left-1/2 lg:-translate-x-1/2"
+                        x-show.transition.in.opacity.out.opacity="two"
+                        @click.away="two = false"
+                        x-cloak
+                    >
+                        <p class="pt-2 pl-3 text-lg text-center font-semibold tracking-wide text-gray-700 uppercase">Join Us</p>
+                        <div class="flex flex-col space-y-1 font-medium text-gray-800">
+                        <a href="" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Register</a>
+                        <a href="" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Categories</a>
+                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Alumni Card</a>
+                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Upgrade Membership</a>
+                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Corprates </a>
+                        <a href="" class="flex items-center justify-center p-3 transition bg-gray-200 text-slate-700 rounded hover:bg-blue-400 hover:text-white">
+                            Our Notable Alumni
+                            <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="w-4 h-4 ml-1"
+                            >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                        </div>
+                    </div>
+                    </div>
+                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">UoN</a>
+                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Walk</a>
+                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Scholarship</a>
+                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">Donate</a>
+                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">Downloads</a>
+                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Shop</a>
+                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Contact Us</a>
+                </div>
+                <div class="flex items-center space-x-1">
+                    
+                    <div class="inline-flex md:hidden" x-data="{ open: false }">
+                    <button class="flex-none px-2 btn btn-white btn-sm" @click="open = true">
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                        class="w-5 h-5"
+                        >
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <span class="sr-only">Open Menu</span>
+                    </button>
+                    <div class="absolute top-0 left-0 right-0 z-50 flex flex-col p-2 m-2 space-y-1 bg-white rounded shadow" x-show.transition="open" @click.away="open = false" x-cloak>
+                        <button class="self-end flex-none px-2 btn btn-link btn-icon" @click="open = false">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        <span class="sr-only">Close Menu</span>
+                        </button>
+                        <div class="grid grid-cols-2 gap-1">
+                            <a href="" class="px-3 py-1 transition rounded hover:bg-blue-400 hover:text-white">Home</a>
+                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">About</a>
+                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Scholarship</a>
+                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Walk</a>
+                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Membership</a>
+                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Gallery</a>
+                        </div>
+
+                        <a href="#" class="flex items-center justify-center p-3 font-medium transition bg-gray-200 rounded text-primary hover:bg-gray-300">
+                        Contact Us
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="w-4 h-4 ml-1"
+                        >
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+<!-- End of Navbar -->

@@ -1,0 +1,17 @@
+{
+  "name": "uon_alumni_3",
+  "version": "1.0.0",
+  "description": "This project is ready for Railway deployment using the existing `Procfile`.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/css/output.css --watch" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  }
+}

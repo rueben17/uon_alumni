@@ -29,3 +29,12 @@ urlpatterns = [
     
     # path('user/', include('apps.user.urls', namespace="user")), 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += [
+        # path("admin/", admin.site.urls),
+        # path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+        # path('__debug__/', include(debug_toolbar.urls)),
+    ]
