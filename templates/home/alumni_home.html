@@ -5,12 +5,27 @@
 
 {% block content %}
 
-        <div  class="container mx-auto min-h-screen" style="max-width: 1700px;important;">
+        <div  class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px;important;">
             {% include "snippets/navbar.html" %}
 
-            <section class="min-h-screen bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm mx-auto" style="max-width: 1700px;">
-                    <p>Welcome</p>
+            {% include "snippets/banner.html" %}
+
+            <section id="new_updates" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
+                <section class="p-4">
+                    <div class="mx-auto md:px-12 lg:px-32 max-w-7xl">
+                        <h1 class="text-4xl font-semibold tracking-wide text-gray-900 lg:text-6xl text-balance">
+                            Our Latest News & Updates
+                        </h1>
+                        <p class="mt-4 text-base font-light text-black text-balance">
+                            Control and added security. With decentralization, users have more
+                            control over their data and transactions, and the platform is less
+                            susceptible to malicious attacks.
+                        </p>
+                    </div>
+                </section>                   
             </section>
+
+
 
             {% include "snippets/footer.html" %}
         </div>

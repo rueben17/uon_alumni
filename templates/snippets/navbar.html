@@ -1,6 +1,6 @@
 <!-- Navbar -->
-        <header class=" bg-white mb-1 w-full py-4 px-2  text-black ">
-            <div class="flex items-center justify-between mx-auto max-w-7xl">
+        <header class=" bg-white mb-1 w-full py-4 px-2  text-black  ">
+            <div class="flex items-center justify-between mx-auto ">
                 <div class="">
                     {% comment %} {% for image in banner_images %}
                         <img src="{{image.logo.url}}"  alt="" class="h-24 w-24 md:py-0 g-image  ">
@@ -8,10 +8,10 @@
                 </div>
 
                 <div class=" gap-3 relative hidden space-x-1 md:inline-flex" x-data="{ one: false, two: false }">
-                    <a href="" class="rounded-full btn btn-sm btn-white ">Home</a>
+                    <a href="/" class="rounded-full hover:underline font-light  ">Home</a>
                     
                     <div class="relative">
-                    <button class="flex items-center tracking-wider rounded-full btn btn-sm btn-white" @click="one = true">
+                    <button class="flex items-center tracking-wider rounded-full hover:underline font-light " @click="one = true">
                         About
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -34,37 +34,45 @@
                         @click.away="one = false"
                         x-cloak>
                         <div class="grid grid-cols-2 gap-1 mb-1 ">
-                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white">
-                            <p class="font-semibold text-sm tracking-wider">History</p>
-                            <span class="text-xs">Our History since formation 2005.</span>
-                        </a>
-                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
-                            <p class="font-semibold tracking-wider">Executive Committee</p>
-                            <span class="text-xs">Our Executive Committee Members.</span>
-                        </a>
-                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
-                            <p class="font-semibold tracking-wider">Secretariat</p>
-                            <span class="text-xs">Meet The Secretariat.</span>
-                        </a>
-                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
-                            <p class="font-semibold tracking-wider">Chapters</p>
-                            <span class="text-xs">All The Chapters.</span>
-                        </a>
-                        <a href="" class="px-1.5 py-2 transition rounded hover:bg-blue-400 hover:text-white ">
-                            <p class="font-semibold tracking-wider">Mission, Vision & Core Values</p>
-                            <span class="text-xs">What UoNAA Stands For.</span>
-                        </a>
-                        <a href="" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
-                            <p class="font-semibold tracking-wider">Partners</p>
-                            <span class="text-xs">Whom We Work With.</span>
-                        </a>
+                            <a href="{% url 'home:uon_alumni_history' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white">
+                                <p class="font-semibold text-sm tracking-wider">History</p>
+                                <span class="text-xs">Our History since formation 2005.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_exec_committee' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Executive Committee</p>
+                                <span class="text-xs">Our Executive Committee Members.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_secretariat' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Secretariat</p>
+                                <span class="text-xs">Meet The Secretariat.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_chapters' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Chapters</p>
+                                <span class="text-xs">All The Chapters.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_core' %}" class="px-1.5 py-2 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Mission, Vision & Core Values</p>
+                                <span class="text-xs">What UoNAA Stands For.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_partners' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Partners</p>
+                                <span class="text-xs">Whom We Work With.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_gallery' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Gallery</p>
+                                <span class="text-xs">Us in Pictures.</span>
+                            </a>
+                            <a href="{% url 'home:uon_alumni_consultancy_training' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                                <p class="font-semibold tracking-wider">Consultancy & Training </p>
+                                <span class="text-xs">Professional Development, Certification courses, and Supervisory skill Programmes.</span>
+                            </a>
                         </div>
 
                     </div>
                     </div>
 
                     <div class="relative">
-                    <button class="flex items-center tracking-wider rounded-full btn btn-sm btn-white" @click="two = true">
+                    <button class="flex items-center tracking-wider rounded-full hover:underline font-light " @click="two = true">
                         Membership
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -85,8 +93,7 @@
                         class="absolute top-0 z-50 w-screen max-w-md p-2 mx-0 my-12 text-sm text-gray-800 transform bg-white rounded shadow lg:left-1/2 lg:-translate-x-1/2"
                         x-show.transition.in.opacity.out.opacity="two"
                         @click.away="two = false"
-                        x-cloak
-                    >
+                        x-cloak >
                         <p class="pt-2 pl-3 text-lg text-center font-semibold tracking-wide text-gray-700 uppercase">Join Us</p>
                         <div class="flex flex-col space-y-1 font-medium text-gray-800">
                         <a href="" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Register</a>
@@ -116,13 +123,13 @@
                         </div>
                     </div>
                     </div>
-                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">UoN</a>
-                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Walk</a>
-                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Scholarship</a>
-                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">Donate</a>
-                    <a href="#" class=" tracking-wider rounded-full btn btn-sm btn-white ">Downloads</a>
-                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Shop</a>
-                    <a href="" class=" tracking-wider rounded-full btn btn-sm btn-white ">Contact Us</a>
+                    <a href="https://www.uonbi.ac.ke/ " target="_blank" class=" tracking-wider rounded-full hover:underline font-light  ">UoN</a>
+                    <a href="{% url 'home:uon_alumni_walk' %}" class=" tracking-wider rounded-full hover:underline font-light ">UoN Alumni Walk</a>
+                    <a href="{% url 'home:uon_alumni_scholarship' %}" class=" tracking-wider rounded-full hover:underline font-light ">Scholarship</a>
+                    <a href="{% url 'home:uon_alumni_donate' %}" class=" tracking-wider rounded-full hover:underline font-light ">Donate</a>
+                    <a href="{% url 'home:uon_alumni_downloads' %}" class=" tracking-wider rounded-full hover:underline  font-light">Downloads</a>
+                    <a href="{% url 'home:uon_alumni_shop' %}" class=" tracking-wider rounded-full hover:underline  font-light">Shop</a>
+                    <a href="{% url 'home:uon_alumni_contact_us' %}" class=" tracking-wider rounded-full hover:underline font-light">Contact Us</a>
                 </div>
                 <div class="flex items-center space-x-1">
                     
@@ -165,15 +172,15 @@
                         <span class="sr-only">Close Menu</span>
                         </button>
                         <div class="grid grid-cols-2 gap-1">
-                            <a href="" class="px-3 py-1 transition rounded hover:bg-blue-400 hover:text-white">Home</a>
+                            <a href="/" class="px-3 py-1 transition rounded hover:bg-blue-400 hover:text-white">Home</a>
                             <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">About</a>
-                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Scholarship</a>
-                            <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Walk</a>
+                            <a href="{% url 'home:uon_alumni_scholarship' %}" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Scholarship</a>
+                            <a href="{% url 'home:uon_alumni_walk' %}" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">UoN Alumni Walk</a>
                             <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Membership</a>
                             <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Gallery</a>
                         </div>
 
-                        <a href="#" class="flex items-center justify-center p-3 font-medium transition bg-gray-200 rounded text-primary hover:bg-gray-300">
+                        <a href="{% url 'home:uon_alumni_contact_us' %}" class="flex items-center justify-center p-3 font-medium transition bg-gray-200 rounded text-primary hover:bg-gray-300">
                         Contact Us
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -198,3 +205,4 @@
             </div>
         </header>
 <!-- End of Navbar -->
+
