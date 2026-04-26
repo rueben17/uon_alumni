@@ -48,7 +48,7 @@ else:
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CORS_ALLOW_ALL_ORIGINS = True
-
+CRSF_TRUSTED_ORIGINS = ['https://uonalumni.up.railway.app']
 
 # Application definition
 
