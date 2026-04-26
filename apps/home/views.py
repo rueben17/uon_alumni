@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from apps.home.models import*
 # Create your views here.
 
 
@@ -11,12 +11,13 @@ def uon_alumni_history(request):
 def uon_alumni_core(request):
     return render(request, 'home/uon_alumni_core.html')
 
+
 def uon_alumni_exec_committee(request):
-    # executives = Executive.objects.all().order_by('rank')
+    executives = Executive.objects.all().order_by('rank')
 
     
     context = {
-        # "executives": executives,
+        "executives": executives,
 
     }
     # print(treasurer)
@@ -25,10 +26,10 @@ def uon_alumni_exec_committee(request):
 
 def uon_alumni_secretariat(request):
     
-    # secretariats = Secretariat.objects.all().order_by('rank')
+    secretariats = Secretariat.objects.all().order_by('rank')
 
     context = {
-        # "secretariats": secretariats,
+        "secretariats": secretariats,
     }
     return render(request, 'home/uon_alumni_secretariat.html', context)
 
@@ -66,6 +67,10 @@ def uon_alumni_partners(request):
 
 def uon_alumni_register(request):
     return render(request, 'home/uon_alumni_register.html')
+
+
+def uon_alumni_agm(request):
+    return render(request, 'home/uon_alumni_agm.html')
 
 
 def uon_alumni_consultancy_training(request):

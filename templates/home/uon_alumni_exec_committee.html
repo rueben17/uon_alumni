@@ -10,7 +10,267 @@
             {% include "snippets/banner.html" %}
 
             <section id="executive_committee" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
-                    
+                        <h1 class="text-4xl font-semibold tracking-wide text-gray-900 lg:text-6xl text-balance mb-10 text-center">
+                            UoN Alumni Executive Committee
+                        </h1>   
+                    {% if executives %}
+                         {% for executive in executives %}
+
+                            <!-- avatar on the left -->
+                            {% if executive.position == "CHAIRMAN" %}
+                                <div class="grid gap-2 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto lg:col-start-3">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-full border shadow-2xl rounded-2xl">
+                                        </div>
+                                        <div>
+                                        <h3 class="mt-3 font-light text-2xl text-right mr-3">{{executive.position}}</h3>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-start-1 lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none">
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the right -->
+                            {% if executive.position == "VICE CHAIR" %}
+                                <div class="grid gap-2 mt-12 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto ">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-2/3 border shadow-2xl rounded-2xl">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mt-3 font-light text-2xl text-left ml-3">{{executive.position}}</h3>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none"> 
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the left -->
+                            {% if executive.position == "SECRETARY" %}
+                                <div class="grid gap-2 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto lg:col-start-3">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-full border shadow-2xl rounded-2xl">
+                                        </div>
+                                        <div>
+                                        <h3 class="mt-3 font-light text-2xl text-right mr-3">{{executive.position}}</h3>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-start-1 lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none">
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light  ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the right -->
+                            {% if executive.position == "TREASURER" %}
+                                <div class="grid gap-2 mt-12 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto ">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-2/3 border shadow-2xl rounded-2xl">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mt-3 font-light text-2xl text-left ml-3">{{executive.position}}</h3>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none"> 
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the left -->
+                            {% if executive.position == "ORGANISING SECRETARY" %}
+                                <div class="grid gap-2 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto lg:col-start-3">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-full border shadow-2xl rounded-2xl">
+                                        </div>
+                                        <div>
+                                        <h3 class="mt-3 font-light text-2xl text-right mr-3">{{executive.position}}</h3>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-start-1 lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none">
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light  ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the right -->
+                            {% if executive.position == "DEPUTY SECRETARY" %}
+                                <div class="grid gap-2 mt-12 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto ">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-2/3 border shadow-2xl rounded-2xl">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mt-3 font-light text-2xl text-left ml-3">{{executive.position}}</h3>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none"> 
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the left -->
+                            {% if executive.position == "DEPUTY TREASURER" %}
+                                <div class="grid gap-2 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto lg:col-start-3">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-full border shadow-2xl rounded-2xl">
+                                        </div>
+                                        <div>
+                                        <h3 class="mt-3 font-light text-2xl text-right mr-3">{{executive.position}}</h3>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-start-1 lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none">
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light  ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the left -->
+                            {% if executive.position == "DEPUTY ORGANISING SECRETARY" %}
+                                <div class="grid gap-2 mt-12 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto ">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-2/3 border shadow-2xl rounded-2xl">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mt-3 font-light text-2xl text-left ml-3">{{executive.position}}</h3>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none"> 
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <!-- avatar on the right -->
+                            {% if executive.position == "EDITOR" %}
+                                <div class="grid gap-2 mt-12 lg:grid-flow-col-dense lg:max-w-7xl lg:mx-auto lg:grid lg:grid-cols-3">
+                                    <div class="max-w-lg min-w-full mx-auto ">
+                                    <div>
+                                        <div class="relative h-full p-2 overflow-hidden border rounded-3xl">
+                                        <img src="{{executive.get_avatar}}" class="object-cover h-2/3 border shadow-2xl rounded-2xl">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="mt-3 font-light text-2xl text-left ml-3">{{executive.position}}</h3>
+                                    </div>
+                                    </div>
+                                    <div class="lg:col-span-2">
+                                    <div class="flex h-full">
+                                        <div class="flex flex-col justify-center p-8  max-w-none"> 
+                                        <h2 class="font-medium uppercase text-2xl text-gray-900">
+                                            <strong>{{executive.title}} </strong> {{executive.first_name}} {{executive.surname}}
+                                        </h2>
+                                        <p class="mt-4 text-black text-balance text-justify font-light ">
+                                            {{executive.bio}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            
+                         {% endfor %}
+                    {% endif %}
             </section>
 
             {% include "snippets/footer.html" %}
