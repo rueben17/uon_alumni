@@ -29,9 +29,7 @@ class Article(models.Model):
     title =  Title(_("Title"), help_text=_("Required"), max_length=250)
     body = models.TextField()
     quote = models.TextField(max_length=1000,  blank=True, null=True)
-    thumbnail = ResizedImageField(size=[1800, 1800], quality=95, 
-                        upload_to='articles/images/', 
-                        blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='articles/images/', blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(verbose_name=_("Created at"), default=timezone.now, blank=True)
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated", blank=True)
@@ -130,10 +128,7 @@ class Executive(models.Model):
     middle_name = models.CharField(_('Middle Name'), max_length=150, blank=True)
     surname = models.CharField(_('Surname'), max_length=150, blank=True)
     bio = models.TextField(_("Bio"), max_length=2500, blank=True, null=True)
-    avatar = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='gallery/executive/',
-                        help_text=_("Executive Committee Member Avatar"),
-                        blank=True, null=True)
+    avatar = models.ImageField(upload_to='gallery/executive/', blank=True, null=True)
 
 
     class Meta:
@@ -216,10 +211,7 @@ class Secretariat(models.Model):
     position = models.CharField(_('Secretariat Position'), help_text=_("Secretariat Position"), max_length=255, choices=SECRETARIAT_POSITION, null=True, blank=True)
     rank = models.CharField(_('Secretariat Rank'), help_text=_("Secretariat Rank"), max_length=255, choices=RANK, null=True, blank=True)
     bio = models.TextField(_("Bio"), max_length=2500, blank=True, null=True)
-    avatar = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='gallery/secretariat/',
-                        help_text=_("Secretariat Member Avatar"),
-                        blank=True, null=True)
+    avatar = models.ImageField(upload_to='gallery/secretariat/', blank=True, null=True)
 
 
     class Meta:
