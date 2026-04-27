@@ -312,6 +312,7 @@ class Faculty(models.Model):
 class Chapter(models.Model):
     faculty = models.ForeignKey(Faculty, related_name='chapters', on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=100)
+    about = models.TextField(blank=True, null=True)
     year_launched = models.DateTimeField(verbose_name=_("Launched On "),  blank=True, null=True)
     slug = AutoSlugField(populate_from='name',
                          unique_with=['year_launched', ],

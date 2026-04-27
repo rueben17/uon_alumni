@@ -55,6 +55,7 @@ def uon_alumni_chapters(request):
     }
     return render(request, 'home/uon_alumni_chapters.html', context)
 
+
 def uon_alumni_chapter_detail(request, chapter_slug=None, faculty_slug=None):
     chapter = get_object_or_404(Chapter, slug=chapter_slug)
     

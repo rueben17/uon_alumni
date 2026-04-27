@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+<title>{% block title %} UoN Alumni Association | {{chapter.name}} {% endblock %}</title>
+
+
+{% block content %}
+
+        <div  class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px;important;">
+            {% include "snippets/navbar.html" %}
+             {% include "snippets/banner.html" %}
+
+            <section id="partners" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
+                <div class="max-w-7xl mx-auto  min-h-screen">
+                    <section class="p-4">
+                        <div class="px-8 py-12 mx-auto md:px-12 lg:px-32 max-w-7xl">
+                        <div>
+                            <h1 class="text-4xl font-semibold tracking-wide text-gray-900 lg:text-6xl text-balance">
+                            {{chapter.name}}
+                            </h1>
+                            <p class="mt-4 font-light text-black text-balance">
+                                {{chapter.about}}
+                            </p>
+                        </div>
+                        </div>
+                    </section>
+
+                    <section class="p-4">
+
+                    </section>
+                </div>      
+            </section>
+
+            {% include "snippets/footer.html" %}
+        </div>
+
+    
+
+{% endblock content %}
