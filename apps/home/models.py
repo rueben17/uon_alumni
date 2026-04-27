@@ -24,7 +24,21 @@ class Title(models.CharField):
 
 
 class Article(models.Model):
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    ARTICLE_TYPE_CHOICES = [
+        ('article', _('Article')),
+        ('workshop', _('Workshop')),
+        ('conference', _('Conference')),
+        ('forum', _('Forum')),
+        ('training', _('Training')),
+    ]
+    article_type = models.CharField(
+        max_length=50,
+        choices=ARTICLE_TYPE_CHOICES,
+        default='article',
+        verbose_name=_("Article Type")
+    )
     chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="articles",  blank=True, null=True)
     title =  Title(_("Title"), help_text=_("Required"), max_length=250)
     body = models.TextField()
@@ -88,14 +102,14 @@ class Banner(models.Model):
         blank=True,
     )
     top_banner = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='gallery//uploads/%Y/%m/%d/',
+                        upload_to='banner/top_banner/%Y/%m/%d/',
                         help_text=_("Upload your item images "), blank=True, null=True)
 
     image = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='banner/uploads/%Y/%m/%d/',
+                        upload_to='banner/image/%Y/%m/%d/',
                         help_text=_("Upload banner images "), blank=True, null=True)
-    logo = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='gallery//uploads/%Y/%m/%d/',
+    logo = ResizedImageField(size=[400, 400], quality=95, 
+                        upload_to='banner/logo/%Y/%m/%d/',
                         help_text=_("Upload your item images "), blank=True, null=True)   
 
     created_at = models.DateTimeField(auto_now_add=True, editable=False)

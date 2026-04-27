@@ -10,7 +10,10 @@
              {% include "snippets/banner.html" %}
 
             <section id="consultancy_training" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
-                    
+                {% for article in articles %}
+                    {% include "snippets/mombasa_alumni_training.html" %}
+                {% endfor %}    
+                
             </section>
 
             {% include "snippets/footer.html" %}

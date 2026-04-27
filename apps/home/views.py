@@ -89,7 +89,9 @@ def uon_alumni_agm(request):
 
 
 def uon_alumni_consultancy_training(request):
-    return render(request, 'home/uon_alumni_consultancy_training.html')
+    articles = Article.objects.filter(article_type__in=['training', 'workshop', 'conference'])
+    
+    return render(request, 'home/uon_alumni_consultancy_training.html', {'articles': articles})
 
 
 def uon_alumni_donate(request):

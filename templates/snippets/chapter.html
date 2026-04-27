@@ -1,4 +1,4 @@
- <div class="rounded max-h-96 overflow-hidden flex flex-col max-w-2xl mx-auto bg-white p-1 shadow transition hover:shadow-xl hover:cursor-pointer">
+ <div class="rounded max-h-96 overflow-hidden flex flex-col max-w-2xl mx-auto bg-white hover:bg-yellow-400 p-1 shadow transition hover:shadow-xl ">
 
     <a href="{{chapter.get_absolute_url}}">
         {% if chapter.thumbnail %}
@@ -9,7 +9,7 @@
     </a>
     
     <div class="relative -mt-16 px-3 pt-3 pb-3 bg-white m-2">
-        <a href="{{chapter.get_absolute_url}}" class="text-center text-black capitalize font-semibold text-sm transition duration-500 ease-in-out inline-block ">
+        <a href="{{chapter.get_absolute_url}}" class="text-center hover:underline text-black capitalize font-semibold text-sm transition duration-500 ease-in-out inline-block ">
             {{chapter.name}}
         </a>
         <p class="text-slate-900 text-sm ">
