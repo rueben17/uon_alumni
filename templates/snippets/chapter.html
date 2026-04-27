@@ -1,0 +1,38 @@
+ {% comment %} <div class="rounded max-h-96 overflow-hidden flex flex-col max-w-2xl mx-auto bg-white p-1 shadow transition hover:shadow-xl hover:cursor-pointer">
+
+    <a href="{{chapter.get_absolute_url}}">
+        {% if chapter.thumbnail %}
+            <img class="h-52 w-full object-top" src="{{chapter.get_thumbnail}}" alt="{{chapter.name}}" style="">
+        {% else %}
+            <img class="w-full" src="https://images.pexels.com/photos/5120892/pexels-photo-5120892.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;h=625.0&amp;sharp=10&amp;w=1000" alt="Sunset in the mountains">
+        {% endif %}
+    </a>
+    
+    <div class="relative -mt-16 px-3 pt-3 pb-3 bg-white m-2">
+        <a href="{{chapter.get_absolute_url}}" class="text-black uppercase font-semibold text-sm transition duration-500 ease-in-out inline-block ">
+            {{chapter.name}}
+        </a>
+        <p class="text-slate-900 text-sm">
+            Today, I’m covering one of my favorite parts of the Nordstrom Anniversary Sale: the activewear!
+        </p>
+        <div class="mt-3 text-gray-600 text-xs">
+            <div class"">
+                <span class="text-sm">Faculty:</span>
+                <a href="#" class="text-xs  tracking-wide text-black font-semibold uppercase transition duration-500 ease-in-out">
+                    {{chapter.faculty}}
+                </a>
+                <div class="flex items-center">
+                    <span class="text-xs">Launched on: </span>
+                    <p class="text-xs ml-1  text-black font-thin uppercase transition duration-500 ease-in-out">
+                        {{chapter.year_launched}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>  {% endcomment %}
+
+        <a href="{{chapter.get_absolute_url}}" class="text-black uppercase font-semibold text-sm transition duration-500 ease-in-out inline-block ">
+            {{chapter.name}}
+        </a>

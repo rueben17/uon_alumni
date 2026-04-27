@@ -25,7 +25,7 @@ class Title(models.CharField):
 
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="articles",  blank=True, null=True)
+    chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="articles",  blank=True, null=True)
     title =  Title(_("Title"), help_text=_("Required"), max_length=250)
     body = models.TextField()
     quote = models.TextField(max_length=1000,  blank=True, null=True)
@@ -76,7 +76,74 @@ class Article(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
-    
+
+
+
+class Banner(models.Model):
+    text = models.CharField(
+        verbose_name=_("Descriptive text"),
+        help_text=_("Please add a short text about the banner "),
+        max_length=75,
+        null=True,
+        blank=True,
+    )
+    top_banner = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='gallery//uploads/%Y/%m/%d/',
+                        help_text=_("Upload your item images "), blank=True, null=True)
+
+    image = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='banner/uploads/%Y/%m/%d/',
+                        help_text=_("Upload banner images "), blank=True, null=True)
+    logo = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='gallery//uploads/%Y/%m/%d/',
+                        help_text=_("Upload your item images "), blank=True, null=True)   
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    class Meta:
+        verbose_name = _("Banner Image")
+        verbose_name_plural = _("Banner Images")
+
+
+    def __str__(self):
+        return f"{self.text}: {self.created_at}"
+
+
+
+class Images(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="images",  blank=True, null=True)
+    chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="images",  blank=True, null=True)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name="images",  blank=True, null=True)
+    image = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='gallery/image-uploads/%Y/%m/%d/',
+                        help_text=_("Upload your image "),
+                        blank=True, null=True)
+
+    alt_text = models.CharField(
+                    verbose_name=_("Alternative text"),
+                    help_text=_("Please add a short alternative about the image"),
+                    max_length=100,
+                    null=True,
+                    blank=True,
+                )
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+    class Meta:
+        verbose_name = _("Gallery Image")
+        verbose_name_plural = _("Gallery Images")
+
+
+    def __str__(self):
+        try:
+            return f"{self.article.title}: {self.alt_text[:30]}"
+        except:
+            return f"No Article Title : {self.created_at}"
+
+
 
 
 class Executive(models.Model):
@@ -164,6 +231,190 @@ class Executive(models.Model):
         avatar = File(thumb_io, name=image.name)
 
         return avatar
+
+
+
+class Event(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title =  Title(_("Title"), help_text=_("Required"), max_length=250)
+    body = models.TextField()
+    thumbnail = ResizedImageField(size=[3648, 3648], quality=95, 
+                        upload_to='walk/images/', 
+                        blank=True, null=True)
+    created_at = models.DateTimeField(verbose_name=_("Created at"), default=timezone.now, blank=True)
+    date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated", blank=True)
+    slug = AutoSlugField(populate_from='title',
+                        unique_with=['created_at', ],
+                        editable=True, always_update=True)
+
+
+
+    def __str__(self):
+        return f"{self.title}: {self.created_at}"
+
+
+    class Meta:
+        ordering = ['-created_at']
+        unique_together = ('title', 'created_at')
+
+
+    def get_absolute_url(self):
+        return reverse("home:uon_alumni_walk_detail", args=[self.slug])
+
+
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        else:
+            if self.thumbnail:
+                self.thumbnail = self.make_thumbnail(self.thumbnail)
+                self.save()
+
+                return self.thumbnail.url
+            else:
+                return 'https://via.placeholder.com/240x240x.jpg'
+
+
+    def make_thumbnail(self, image, size=(3648, 3648)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.thumbnail(size)
+
+        thumb_io = BytesIO()
+        img.save(thumb_io, 'JPEG', quality=95)
+
+        thumbnail = File(thumb_io, name=image.name)
+
+        return thumbnail
+
+
+
+class Faculty(models.Model):
+    name = models.CharField(max_length=100)
+    launched_on = models.DateTimeField(verbose_name=_("Launched On"), default=timezone.now, blank=True, null=True)
+    slug = AutoSlugField(populate_from='name',
+                        unique_with=['launched_on', ],
+                        editable=True, always_update=True, null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Faculty')
+        verbose_name_plural = _("Faculties")
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+    def get_absolute_url(self):
+        return reverse("home:faculty",  args=[self.slug])
+
+
+
+class Chapter(models.Model):
+    faculty = models.ForeignKey(Faculty, related_name='chapters', on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=100)
+    year_launched = models.DateTimeField(verbose_name=_("Launched On "),  blank=True, null=True)
+    slug = AutoSlugField(populate_from='name',
+                         unique_with=['year_launched', ],
+                         editable=True, always_update=True, blank=True, null=True)
+    thumbnail = ResizedImageField(size=[1080, 1080], quality=95, 
+                        upload_to='chapter/uploads/%Y/%m/%d/',
+                        help_text=_("Chapter banner "),
+                        blank=True, null=True)
+
+
+    class Meta:
+        verbose_name = _('Chapter')
+        verbose_name_plural = _("Chapters")
+
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+    def get_absolute_url(self):
+        if self.faculty:
+            faculty_slug = slugify(self.faculty.name)
+            return reverse("home:uon_alumni_chapter_detail", args=[faculty_slug, self.slug])
+        return reverse("home:uon_alumni_chapter_detail", args=[self.slug])
+
+
+
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        else:
+            if self.thumbnail:
+                self.thumbnail = self.make_thumbnail(self.thumbnail)
+                self.save()
+
+                return self.thumbnail.url
+            else:
+                return 'https://via.placeholder.com/240x240x.jpg'
+
+
+
+class Department(models.Model):
+    faculty = models.ForeignKey(Faculty, related_name='departments', on_delete=models.CASCADE, blank=True, null=True)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = _('Department')
+        verbose_name_plural = _("Departments")
+
+    def __str__(self):
+        return f"{self.name}"
+
+
+
+
+class Partner(models.Model):
+    title =  Title(_("Title"), help_text=_("Required"), max_length=250)
+    relation = models.CharField(
+                    verbose_name=_("Partner Relation"),
+                    help_text=_("Relation with UoNAA "),
+                    max_length=125,
+                    null=True,
+                    blank=True,
+                )
+    thumbnail = ResizedImageField(size=[3648, 3648], quality=95, 
+                        upload_to='gallery/partners/', 
+                        blank=True, null=True)
+    created_at = models.DateTimeField(verbose_name=_("Created at"), default=timezone.now, blank=True)
+   
+    def __str__(self):
+        return f"{self.title}: {self.created_at}"
+
+
+    class Meta:
+        ordering = ['-created_at']
+        unique_together = ('title', 'created_at')
+
+
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        else:
+            if self.thumbnail:
+                self.thumbnail = self.make_thumbnail(self.thumbnail)
+                self.save()
+
+                return self.thumbnail.url
+            else:
+                return 'https://via.placeholder.com/240x240x.jpg'
+
+
+    def make_thumbnail(self, image, size=(3648, 3648)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.thumbnail(size)
+
+        thumb_io = BytesIO()
+        img.save(thumb_io, 'JPEG', quality=95)
+
+        thumbnail = File(thumb_io, name=image.name)
+
+        return thumbnail
+
 
 
 class Secretariat(models.Model):

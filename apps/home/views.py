@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from apps.home.models import*
 # Create your views here.
 
@@ -49,11 +49,25 @@ def uon_alumni_walk(request):
 
 
 def uon_alumni_chapters(request):
-    # chapters = Chapter.objects.all().order_by('-year_launched')
+    chapters = Chapter.objects.all().order_by('-year_launched')
     context = {
-        # "chapters": chapters
+        "chapters": chapters
     }
     return render(request, 'home/uon_alumni_chapters.html', context)
+
+def uon_alumni_chapter_detail(request, chapter_slug=None, faculty_slug=None):
+    chapter = get_object_or_404(Chapter, slug=chapter_slug)
+    
+    if faculty_slug:
+        faculty = get_object_or_404(Faculty, slug=faculty_slug)
+
+    context = {
+        "chapter": chapter,
+    }
+    return render(request, 'home/uon_alumni_chapter_detail.html', context)
+
+
+
 
 
 def uon_alumni_partners(request):
