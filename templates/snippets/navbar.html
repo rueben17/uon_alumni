@@ -8,10 +8,10 @@
                 </div>
 
                 <div class=" gap-3 relative hidden space-x-1 md:inline-flex" x-data="{ one: false, two: false }">
-                    <a href="/" class="rounded-full hover:underline font-light  ">Home</a>
+                    <a href="/" class=" px-4 py-1 hover:bg-blue-400 hover:text-white font-light  ">Home</a>
                     
                     <div class="relative">
-                    <button class="flex items-center tracking-wider rounded-full hover:underline font-light " @click="one = true">
+                    <button class="flex items-center tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white font-light " @click="one = true">
                         About
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -29,48 +29,48 @@
                         </svg>
                     </button>
                     <div
-                        class="absolute top-0 z-50 w-screen max-w-md p-2 mx-0 my-12 text-sm text-gray-800 transform bg-white rounded shadow lg:left-1/2 lg:-translate-x-1/2"
+                        class="absolute top-0 z-50 w-screen max-w-md p-2 mx-0 my-12 text-sm text-gray-800 transform bg-white rounded shadow-xl border border-slate-100 lg:left-1/2 lg:-translate-x-1/2"
                         x-show.transition.in.opacity.out.opacity="one"
                         @click.away="one = false"
                         x-cloak>
                         <div class="grid grid-cols-2 gap-1 mb-1 ">
-                            <a href="{% url 'home:uon_alumni_history' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white">
+                            <a href="{% url 'home:uon_alumni_history' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white">
                                 <p class="font-semibold text-sm tracking-wider">History</p>
                                 <span class="text-xs">Our History since formation 2005.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_exec_committee' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_exec_committee' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Executive Committee</p>
                                 <span class="text-xs">Our Executive Committee Members.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_secretariat' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_secretariat' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Secretariat</p>
                                 <span class="text-xs">Meet The Secretariat.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_chapters' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_chapters' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Chapters</p>
                                 <span class="text-xs">All The Chapters.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_core' %}" class="px-1.5 py-2 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_core' %}" class="px-1.5 py-2 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Mission, Vision & Core Values</p>
                                 <span class="text-xs">What UoNAA Stands For.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_partners' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_partners' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Partners</p>
                                 <span class="text-xs">Whom We Work With.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_agm' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_agm' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Annual General Meeting</p>
-                                <span class="text-xs">Annual General Meeting. Members review reports, discuss progress, and make key decisions for the year ahead.</span>
+                                <span class="text-xs">Members review reports, discuss progress, and make key decisions for the year ahead.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_consultancy_training' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_consultancy_training' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Consultancy & Training </p>
                                 <span class="text-xs">Professional Development, Certification courses, and Supervisory skill Programmes.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_gallery' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_gallery' %}" class="px-1.5 py-1.5 transition hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">Gallery</p>
                                 <span class="text-xs">Us in Pictures.</span>
                             </a>
-                            <a href="{% url 'home:uon_alumni_gallery' %}" class="px-1.5 py-1.5 transition rounded hover:bg-blue-400 hover:text-white ">
+                            <a href="{% url 'home:uon_alumni_gallery' %}" class="px-1.5 py-1.5 transition  hover:bg-blue-400 hover:text-white ">
                                 <p class="font-semibold tracking-wider">In Memory</p>
                                 <span class="text-xs">Remembrance and Respect of our Alumni</span>
                             </a>
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="relative">
-                    <button class="flex items-center tracking-wider rounded-full hover:underline font-light " @click="two = true">
+                    <button class="flex items-center tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white font-light " @click="two = true">
                         Membership
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -102,14 +102,14 @@
                         x-show.transition.in.opacity.out.opacity="two"
                         @click.away="two = false"
                         x-cloak >
-                        <p class="pt-2 pl-3 text-lg text-center font-semibold tracking-wide text-gray-700 uppercase">Join Us</p>
-                        <div class="flex flex-col space-y-1 font-medium text-gray-800">
-                        <a href="" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Register</a>
-                        <a href="" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Categories</a>
-                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Alumni Card</a>
-                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white">Upgrade Membership</a>
-                        <a href="#" class="px-3 py-2 transition rounded hover:bg-blue-400 hover:text-white"> Corprates </a>
-                        <a href="" class="flex items-center justify-center p-3 transition bg-gray-200 text-slate-700 rounded hover:bg-blue-400 hover:text-white">
+                        <p class="pt-2 pl-3 text-lg text-center font-light tracking-wide text-gray-700 uppercase">Join Us</p>
+                        <div class="flex flex-col space-y-1 font-light text-black">
+                        <a href="{% url 'home:uon_alumni_categories_benefits' %}" class="px-3 py-2 transition  hover:bg-blue-400 hover:text-white">Categories & Benefits</a>
+                        <a href="" class="px-3 py-2 transition  hover:bg-blue-400 hover:text-white"> Register</a>
+                        <a href="#" class="px-3 py-2 transition  hover:bg-blue-400 hover:text-white">Alumni Card</a>
+                        <a href="#" class="px-3 py-2 transition  hover:bg-blue-400 hover:text-white">Upgrade Membership</a>
+                        <a href="#" class="px-3 py-2 transition  hover:bg-blue-400 hover:text-white"> Corprates </a>
+                        <a href="" class="flex items-center justify-center p-3 transition bg-yellow-400 text-slate-700  hover:bg-blue-400 hover:text-black">
                             Our Notable Alumni
                             <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -131,13 +131,13 @@
                         </div>
                     </div>
                     </div>
-                    <a href="https://www.uonbi.ac.ke/ " target="_blank" class=" tracking-wider rounded-full hover:underline font-light  ">UoN</a>
-                    <a href="{% url 'home:uon_alumni_walk' %}" class=" tracking-wider rounded-full hover:underline font-light ">UoN Alumni Walk</a>
-                    <a href="{% url 'home:uon_alumni_scholarship' %}" class=" tracking-wider rounded-full hover:underline font-light ">Scholarship</a>
-                    <a href="{% url 'home:uon_alumni_donate' %}" class=" tracking-wider rounded-full hover:underline font-light ">Donate</a>
-                    <a href="{% url 'home:uon_alumni_downloads' %}" class=" tracking-wider rounded-full hover:underline  font-light">Downloads</a>
-                    <a href="{% url 'home:uon_alumni_shop' %}" class=" tracking-wider rounded-full hover:underline  font-light">Shop</a>
-                    <a href="{% url 'home:uon_alumni_contact_us' %}" class=" tracking-wider rounded-full hover:underline font-light">Contact Us</a>
+                    <a href="https://www.uonbi.ac.ke/ " target="_blank" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white font-light  ">UoN</a>
+                    <a href="{% url 'home:uon_alumni_walk' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white  font-light ">UoN Alumni Walk</a>
+                    <a href="{% url 'home:uon_alumni_scholarship' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white  font-light ">Scholarship</a>
+                    <a href="{% url 'home:uon_alumni_donate' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white  font-light ">Donate</a>
+                    <a href="{% url 'home:uon_alumni_downloads' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white   font-light">Downloads</a>
+                    <a href="{% url 'home:uon_alumni_shop' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white   font-light">Shop</a>
+                    <a href="{% url 'home:uon_alumni_contact_us' %}" class=" tracking-wider px-4 py-1 hover:bg-blue-400 hover:text-white  font-light">Contact Us</a>
                 </div>
                 <div class="flex items-center space-x-1">
                     
@@ -211,6 +211,15 @@
                     </div>
                 </div>
             </div>
+            <div class="flex justify-end space-x-10 max-w-7xl mx-auto ">
+                <div class="px-4 py-1.5 transition font-light hover:bg-black hover:text-white">
+                    <a href="">Login</a>
+                </div>
+                <div class="px-4 py-1.5 transition font-light hover:bg-black hover:text-white">
+                    <a href="">Logout</a>
+                </div>
+            </div>
         </header>
+
 <!-- End of Navbar -->
 

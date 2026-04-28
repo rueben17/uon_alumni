@@ -84,6 +84,11 @@ def uon_alumni_register(request):
     return render(request, 'home/uon_alumni_register.html')
 
 
+
+def uon_alumni_categories_benefits(request):
+    return render(request, 'home/uon_alumni_categories_benefits.html')
+
+
 def uon_alumni_agm(request):
     return render(request, 'home/uon_alumni_agm.html')
 
@@ -115,3 +120,8 @@ def uon_alumni_shop(request):
 
 def uon_alumni_contact_us(request):
     return render(request, 'home/uon_alumni_contact_us.html')
+
+
+
+#Membership views
+

@@ -9,7 +9,7 @@
             {% include "snippets/navbar.html" %}
             {% include "snippets/banner.html" %}
             
-            <section id="chapters" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
+            <section id="chapters" class="max-w-7xl min-h-screen mx-auto  p-3 rounded-sm">
                 <div class="max-w-7xl mx-auto min-h-screen">
                     <section class="p-4">
                         <div class="px-8 py-12 mx-auto md:px-12 lg:px-28 max-w-7xl">
@@ -26,18 +26,18 @@
                         </div>
                     </section>
 
-                    <section class="mx-auto max-w-6xl pb-24  p-4">
-                    <div class="mx-auto">
-                        <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                    <section class="mx-auto max-w-7xl pb-24">
+                        <div class="mx-auto">
+                            <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
 
-                        {% for chapter in chapters %}
-                            <div class="col-span-4">
-                                {% include "snippets/chapter.html" %}
+                            {% for chapter in chapters %}
+                                <div class="col-span-4">
+                                    {% include "snippets/chapter.html" %}
+                                </div>
+                            {% endfor %}
+
                             </div>
-                        {% endfor %}
-
                         </div>
-                    </div>
                     </section>
                 </div>
             </section>

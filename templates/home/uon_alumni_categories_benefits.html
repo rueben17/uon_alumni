@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} UoNAA Membership Categories & Benefits {% endblock %}
+
+{% block extra_head %}
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* Alpine.js transitions - minimal required CSS */
+    [x-cloak] { display: none !important; }
+    .fade-enter { opacity: 0; transform: translateY(4px); }
+    .fade-enter-active { transition: opacity .2s ease, transform .2s ease; }
+  </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto min-h-screen" style="max-width: 1700px;">
+        {% include "snippets/navbar.html" %}
+        {% include "snippets/banner.html" %}
+        
+        <section id="alumni_benefits" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-gray-300 p-3 rounded-sm">
+            <div class="py-12 px-4 max-w-6xl mx-auto">
+                <section class="p-4">
+                    <div class="px-8 py-12 mx-auto md:px-12 lg:px-28 max-w-7xl">
+                    <div>
+                        <h1 class="text-4xl font-semibold tracking-wide text-gray-900 lg:text-6xl text-balance">
+                        Membership Categories
+                        </h1>
+                        <p class="mt-4 text-base font-medium text-gray-500 text-balance">
+                            Select a category to explore its benefits.  
+                        </p>
+                    </div>
+                    </div>
+                </section>
+
+                {# ── Alpine component ──────────────────────────────────────── #}
+                <div x-data="{ active: 'bronze' }" x-cloak>
+
+                    {# Legend #}
+                    <div class="flex flex-wrap gap-x-5 gap-y-2 mb-7">
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500 flex-shrink-0"></span>
+                        Access &amp; Networking
+                    </span>
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-teal-500 flex-shrink-0"></span>
+                        Career &amp; Learning
+                    </span>
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-purple-500 flex-shrink-0"></span>
+                        Exclusive Privileges
+                    </span>
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 flex-shrink-0"></span>
+                        Financial Perks
+                    </span>
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 flex-shrink-0"></span>
+                        Governance Rights
+                    </span>
+                    <span class="flex items-center gap-1.5 text-xs text-gray-500">
+                        <span class="w-2.5 h-2.5 rounded-full bg-pink-500 flex-shrink-0"></span>
+                        Special Recognition
+                    </span>
+                    </div>
+
+                    {# ── Tier selector cards ─────────────────────────────────── #}
+                    
+                    {# ── Tier selector cards with rich, distinctive colors ── #}
+                    <div class="grid grid-cols-[repeat(auto-fill,minmax(140px,1fr))] gap-3 mb-6">
+
+                    {# Student Annual - Bright Blue (Youth, energy, learning) #}
+                    <button class="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 border border-blue-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-blue-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-blue-300 shadow-xl': active === 'student', 'border-blue-500': active === 'student' }"
+                        @click="active = 'student'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-blue-900 border border-blue-300 whitespace-nowrap shadow-sm">Student Annual</span>
+                        <p class="text-sm text-blue-900 font-bold mt-2 mb-0">KES 500</p>
+                        <p class="text-[0.7rem] text-blue-700/70 mt-2 mb-0 font-medium">7 benefits</p>
+                    </button>
+
+                    {# Annual - Emerald Green (Growth, standard membership) #}
+                    <button class="bg-gradient-to-br from-emerald-50 via-emerald-100 to-emerald-200 border border-emerald-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-emerald-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-emerald-300 shadow-xl': active === 'annual', 'border-emerald-500': active === 'annual' }"
+                        @click="active = 'annual'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-emerald-900 border border-emerald-300 whitespace-nowrap shadow-sm">Annual</span>
+                        <p class="text-sm text-emerald-900 font-bold mt-2 mb-0">KES 2,000</p>
+                        <p class="text-[0.7rem] text-emerald-700/70 mt-2 mb-0 font-medium">12 benefits</p>
+                    </button>
+
+                    {# Honorary - Cyan/Teal (Prestige, recognition) #}
+                    <button class="bg-gradient-to-br from-cyan-50 via-cyan-100 to-cyan-200 border border-cyan-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-cyan-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-cyan-300 shadow-xl': active === 'honorary', 'border-cyan-500': active === 'honorary' }"
+                        @click="active = 'honorary'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-cyan-900 border border-cyan-300 whitespace-nowrap shadow-sm">Honorary</span>
+                        <p class="text-sm text-cyan-900 font-bold mt-2 mb-0">KES 3,000</p>
+                        <p class="text-[0.7rem] text-cyan-700/70 mt-2 mb-0 font-medium">13 benefits</p>
+                    </button>
+
+                    {# Bronze Life - Authentic Bronze #CD7F32 #}
+                    <button class="bg-gradient-to-br from-amber-100 via-[#CD7F32]/20 to-[#CD7F32]/40 border border-[#CD7F32]/50 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-[#CD7F32] hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-[#CD7F32]/30 shadow-xl': active === 'bronze', 'border-[#CD7F32]': active === 'bronze' }"
+                        @click="active = 'bronze'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/90 backdrop-blur-sm text-amber-900 border border-[#CD7F32]/30 whitespace-nowrap shadow-sm">Bronze Life</span>
+                        <p class="text-sm text-amber-900 font-bold mt-2 mb-0">KES 25,000</p>
+                        <p class="text-[0.7rem] text-amber-800/70 mt-2 mb-0 font-medium">18 benefits</p>
+                    </button>
+
+                    {# Silver Life - Cool Silver/Gray (Sophistication, balance) #}
+                    <button class="bg-gradient-to-br from-gray-50 via-gray-100 to-gray-300 border border-gray-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-gray-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-gray-300 shadow-xl': active === 'silver', 'border-gray-500': active === 'silver' }"
+                        @click="active = 'silver'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-gray-800 border border-gray-400 whitespace-nowrap shadow-sm">Silver Life</span>
+                        <p class="text-sm text-gray-800 font-bold mt-2 mb-0">KES 50,000</p>
+                        <p class="text-[0.7rem] text-gray-700/70 mt-2 mb-0 font-medium">21 benefits</p>
+                    </button>
+
+                    {# Gold Life - Rich Gold/Yellow (Premium, success) #}
+                    <button class="bg-gradient-to-br from-yellow-50 via-amber-100 to-yellow-200 border border-yellow-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-yellow-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-yellow-300 shadow-xl': active === 'gold', 'border-yellow-500': active === 'gold' }"
+                        @click="active = 'gold'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-yellow-900 border border-yellow-300 whitespace-nowrap shadow-sm">Gold Life</span>
+                        <p class="text-sm text-yellow-900 font-bold mt-2 mb-0">KES 100,000</p>
+                        <p class="text-[0.7rem] text-yellow-800/70 mt-2 mb-0 font-medium">24 benefits</p>
+                    </button>
+
+                    {# Diamond Life - Icy Blue/Cyan (Elite, brilliance) #}
+                    <button class="bg-gradient-to-br from-sky-50 via-cyan-100 to-sky-200 border border-sky-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-sky-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-sky-300 shadow-xl': active === 'diamond', 'border-sky-500': active === 'diamond' }"
+                        @click="active = 'diamond'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-sky-900 border border-sky-300 whitespace-nowrap shadow-sm">Diamond Life</span>
+                        <p class="text-sm text-sky-900 font-bold mt-2 mb-0">KES 250,000</p>
+                        <p class="text-[0.7rem] text-sky-700/70 mt-2 mb-0 font-medium">27 benefits</p>
+                    </button>
+
+                    {# Platinum Life - Elegant Purple/Violet (Ultimate luxury) #}
+                    <button class="bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200 border border-purple-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-purple-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-purple-300 shadow-xl': active === 'platinum', 'border-purple-500': active === 'platinum' }"
+                        @click="active = 'platinum'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-purple-900 border border-purple-300 whitespace-nowrap shadow-sm">Platinum Life</span>
+                        <p class="text-sm text-purple-900 font-bold mt-2 mb-0">KES 500,000</p>
+                        <p class="text-[0.7rem] text-purple-700/70 mt-2 mb-0 font-medium">30 benefits</p>
+                    </button>
+
+                    {# Corporate - Bold Rose/Red (Power, corporate identity) #}
+                    <button class="bg-gradient-to-br from-rose-50 via-rose-100 to-rose-200 border border-rose-300 rounded-xl py-3.5 px-4 cursor-pointer transition-all duration-150 hover:border-rose-500 hover:shadow-xl hover:-translate-y-0.5 text-left"
+                        :class="{ 'border-4 ring-2 ring-rose-300 shadow-xl': active === 'corporate', 'border-rose-500': active === 'corporate' }"
+                        @click="active = 'corporate'">
+                        <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md bg-white/80 backdrop-blur-sm text-rose-900 border border-rose-300 whitespace-nowrap shadow-sm">Corporate</span>
+                        <p class="text-sm text-rose-900 font-bold mt-2 mb-0">KES 1,000,000</p>
+                        <p class="text-[0.7rem] text-rose-700/70 mt-2 mb-0 font-medium">33 benefits</p>
+                    </button>
+
+                    </div>
+
+                    {# ── Detail panel ── #}
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 md:p-6 min-h-[200px]">
+
+                        <div x-show="active === 'student'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_student.html" %}
+                        </div>
+
+                        <div x-show="active === 'annual'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_annual.html" %}
+                        </div>
+
+                        <div x-show="active === 'honorary'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_honorary.html" %}
+                        </div>
+
+                        <div x-show="active === 'bronze'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_bronze.html" %}
+                        </div>
+
+                        <div x-show="active === 'silver'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_silver.html" %}
+                        </div>
+
+                        <div x-show="active === 'gold'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_gold.html" %}
+                        </div>
+
+                        <div x-show="active === 'diamond'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_diamond.html" %}
+                        </div>
+
+                        <div x-show="active === 'platinum'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_platinum.html" %}
+                        </div>
+
+                        <div x-show="active === 'corporate'" x-transition.opacity.duration.200ms>
+                            {% include "home/membership/_tier_corporate.html" %}
+                        </div>
+
+                    </div>{# /tier-detail #}
+                </div>{# /x-data #}
+
+            </div>
+        </section>
+
+    {% include "snippets/footer.html" %}
+    </div>
+{% endblock %}
