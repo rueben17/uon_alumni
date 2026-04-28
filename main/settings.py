@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get(
 # Toggle DJANGO_DEBUG in .env: True for local, False for production
 # DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-DEBUG=True
+DEBUG=False
 
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
