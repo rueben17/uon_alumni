@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tailwind": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/css/output.css --watch" 
+    "tailwind": "npx @tailwindcss/cli -i ./static/src/input.css -o ./static/css/output.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/cli": "^4.2.4",
+    "lightbox2": "^2.12.0",
     "tailwindcss": "^4.2.4"
   }
 }

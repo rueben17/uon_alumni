@@ -36,19 +36,44 @@
                     </div>
                 </section>                   
             </section>
+
             <section id="front_page_2" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
-                <section class="p-4">
+                <section class=" mx-auto mt-8">
                     <div class="mx-auto md:px-12 lg:px-18 max-w-7xl">
                         <h1 class="text-4xl font-semibold tracking-wide text-gray-900 lg:text-6xl text-balance">
-                           Our Latest News
+                           UoN Alumni Gallery
                         </h1>
                         <p class="mt-4 text-lg font-light text-black text-balance">
-                            Join a growing network of over 290,000 University of Nairobi graduates shaping the future of Kenya, Africa, and the world. The UoN Alumni Association brings together past students through lifelong connections, professional growth, and a shared pride in Kenya's leading university.
+                                    Capturing moments of pride, progress, and partnership. The UON Alumni Gallery showcases the vibrant life of our alumni community – 
+                                    from milestone celebrations and professional forums to community service and networking events that bridge continents and generations.
                         </p>
                     </div>
-                    <div class="mx-auto md:px-12 lg:px-32 max-w-8xl">
-                        {% include "snippets/benefits.html" %}
-                    </div>
+                    <section class="w-full mt-10">
+                        <div class="image-gallery">
+                            {% if images %}
+                                {% for image in images %}
+                                    <div class="image-box">
+                                        <a href="{{ image.image.url }}" data-lightbox="gridImage">
+                                            <img src="{{ image.image.url }}" alt="" class="h-full w-full object-cover" >
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                                {% else %}
+                                <p>nothing yet!</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mx-auto py-8">
+                            <div class="fter:h-px flex items-center before:h-px before:flex-1  before:bg-gray-400 before:content-[''] after:h-px after:flex-1 after:bg-gray-400  after:content-['']">
+                                <a href="" class="flex items-center rounded-full border border-gray-500 bg-secondary-50 px-3 py-2 text-center text-sm font-medium text-gray-900transition hover:bg-blue-400 hover:text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4 mr-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                    </svg>   
+                                    More photos
+                                </a>
+                            </div>
+                        </div>
+                    </section>
                 </section>                   
             </section>
 

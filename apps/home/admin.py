@@ -17,6 +17,8 @@ class EventAdmin(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ('title',), }
     list_per_page = 6
 
+
+
 @admin.register(Images)
 class ImagesAdmin(admin.ModelAdmin):
     list_display = ['chapter', 'article', 'image', 'created_at']

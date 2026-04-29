@@ -131,7 +131,7 @@ class Images(models.Model):
     chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="images",  blank=True, null=True)
     event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name="images",  blank=True, null=True)
     image = ResizedImageField(size=[1400, 1400], quality=95, 
-                        upload_to='gallery/image-uploads/%Y/%m/%d/',
+                        upload_to='gallery/image-uploads',
                         help_text=_("Upload your image "),
                         blank=True, null=True)
 
