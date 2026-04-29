@@ -1,76 +1,86 @@
 {% comment %}Membership tier: Corporate — KES 1,000,000 lifetime{% endcomment %}
-<div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-gray-100">
-  <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-rose-300 bg-rose-50 text-rose-800 whitespace-nowrap shadow-sm">Corporate</span>
-  <div>
-    <p class="text-lg font-semibold text-gray-900 m-0">KES 1,000,000 <span class="text-sm font-normal text-gray-400">/ lifetime</span></p>
-    <p class="text-xs text-gray-500 mt-1 mb-0 flex items-center gap-1">
-      <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-      33 benefits included
-    </p>
-  </div>
-</div>
+<div class="group relative block bg-rose-900 rounded-xl overflow-hidden hover:cursor-pointer min-h-[400px]">
+  
+  <img alt="Corporate business background"
+    {% load static %}
+    src="{% static 'images/category/corporate.jpg' %}"
+    class="absolute inset-0 h-full w-full object-cover blur-xs opacity-60 transition-opacity group-hover:opacity-40"/>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-    Access &amp; Networking
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">All Platinum benefits</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Corporate brand visibility at events</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Co-branded alumni initiatives</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Dedicated relationship manager</span>
-  </div>
-</div>
+  <div class="relative p-5 md:p-6">
+    <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-white/20">
+      <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-rose-300 bg-white/90 backdrop-blur-sm text-rose-800 whitespace-nowrap shadow-sm">Corporate</span>
+      <div>
+        <p class="text-lg font-semibold text-white m-0">KES 1,000,000 <span class="text-sm font-normal text-white/70">/ lifetime</span></p>
+        <p class="text-xs text-white/80 mt-1 mb-0 flex items-center gap-1">
+          <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          33 benefits included
+        </p>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-    Career &amp; Learning
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Recruit directly from alumni pool</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Co-sponsor training &amp; seminars</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Joint research partnerships with UoN</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        Access &amp; Networking
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">All Platinum benefits</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Corporate brand visibility at events</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Co-branded alumni initiatives</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Dedicated relationship manager</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-    Financial Perks
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Corporate outlet discount programme</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Priority Alumni Centre stake</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Co-branded merchandise</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+        Career &amp; Learning
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Recruit directly from alumni pool</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Co-sponsor training &amp; seminars</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Joint research partnerships with UoN</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-    Governance Rights
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">Full governance rights</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">Corporate seat on advisory board</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">UON Chancellor selection</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">Strategic input on UONAA direction</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+        Financial Perks
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Corporate outlet discount programme</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Priority Alumni Centre stake</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Co-branded merchandise</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
-    Special Recognition
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Corporate partner plaque at Alumni Centre</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Named annual award category</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Logo on all major publications</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Annual gala co-host opportunity</span>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+        Governance Rights
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Full governance rights</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Corporate seat on advisory board</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">UON Chancellor selection</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Strategic input on UONAA direction</span>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+        Special Recognition
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Corporate partner plaque at Alumni Centre</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Named annual award category</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Logo on all major publications</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Annual gala co-host opportunity</span>
+      </div>
+    </div>
   </div>
 </div>

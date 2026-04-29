@@ -1,15 +1,43 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.home.models import*
+from django.views.generic import ListView
 # Create your views here.
 
+
+
+def uon_alumni_home(request):
+    articles = Article.objects.all().order_by('-date_updated')[:6]
+    # ads = Ad.objects.all()
+    images = Images.objects.all().order_by('-created_at')[:19]
+    featured_articles = Article.objects.filter(is_feature=True).order_by('-created_at')[:1]
+    highlighted_articles = Article.objects.filter(is_highlighted=True).order_by('-created_at')[:6]
+    
+    context = {
+        "articles": articles,
+        "featured_articles": featured_articles,
+        "highlighted_articles": highlighted_articles,
+        "images": images,
+        # "ads": ads
+    }
+    return render(request, "home/alumni_home.html", context)
 
 
 def uon_alumni_history(request):
     return render(request, 'home/uon_alumni_history.html')
 
 
-def uon_alumni_core(request):
-    return render(request, 'home/uon_alumni_core.html')
+# def uon_alumni_core(request):
+#     return render(request, 'home/uon_alumni_core.html')
+
+
+class CoreValuesListView(ListView):
+    model = CoreValue
+    template_name = 'home/uon_alumni_core.html'  # Update with your template path
+    context_object_name = 'core_values'
+    paginate_by = 12  # Optional: paginate if needed
+    
+    def get_queryset(self):
+        return CoreValue.objects.filter(is_active=True).order_by('order')
 
 
 def uon_alumni_exec_committee(request):

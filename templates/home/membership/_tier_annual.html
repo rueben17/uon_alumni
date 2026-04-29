@@ -1,62 +1,72 @@
 {% comment %}Membership tier: Annual — KES 2,000/year{% endcomment %}
-<div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-gray-100">
-  <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-emerald-300 bg-emerald-50 text-emerald-800 whitespace-nowrap shadow-sm">Annual</span>
-  <div>
-    <p class="text-lg font-semibold text-gray-900 m-0">KES 2,000 <span class="text-sm font-normal text-gray-400">/ year</span></p>
-    <p class="text-xs text-gray-500 mt-1 mb-0 flex items-center gap-1">
-      <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-      12 benefits included
-    </p>
-  </div>
-</div>
+<div class="group relative block bg-emerald-900 rounded-xl overflow-hidden hover:cursor-pointer min-h-[400px]">
+  
+  <img alt="Professional networking background"
+    {% load static %}
+    src="{% static 'images/category/annual.jpg' %}"
+    class="absolute inset-0 h-full w-full object-cover blur-xs  opacity-60 transition-opacity group-hover:opacity-40"/>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-    Access &amp; Networking
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Alumni newsletter</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Online platform</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Social media groups</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Alumni directory</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Networking events</span>
-  </div>
-</div>
+  <div class="relative p-5 md:p-6">
+    <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-white/20">
+      <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-emerald-300 bg-white/90 backdrop-blur-sm text-emerald-800 whitespace-nowrap shadow-sm">Annual</span>
+      <div>
+        <p class="text-lg font-semibold text-white m-0">KES 2,000 <span class="text-sm font-normal text-white/70">/ year</span></p>
+        <p class="text-xs text-white/80 mt-1 mb-0 flex items-center gap-1">
+          <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          12 benefits included
+        </p>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-    Career &amp; Learning
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Career counselling</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Resume workshops</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Professional development webinars</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Lifelong learning resources</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Work placements &amp; internships</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        Access &amp; Networking
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Alumni newsletter</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Online platform</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Social media groups</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Alumni directory</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Networking events</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
-    Exclusive Privileges
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-purple-200 bg-purple-50 text-purple-800 leading-tight hover:bg-purple-100 transition-colors duration-150">Alumni ID card</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-purple-200 bg-purple-50 text-purple-800 leading-tight hover:bg-purple-100 transition-colors duration-150">University library access</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+        Career &amp; Learning
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Career counselling</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Resume workshops</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Professional development webinars</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Lifelong learning resources</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Work placements &amp; internships</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-    Governance Rights
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">Vote in association elections</span>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+        Exclusive Privileges
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Alumni ID card</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">University library access</span>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+        Governance Rights
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Vote in association elections</span>
+      </div>
+    </div>
   </div>
 </div>

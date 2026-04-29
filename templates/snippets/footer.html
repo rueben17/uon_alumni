@@ -3,9 +3,9 @@
             <footer class="container mx-auto p-0 md:p-8 xl:px-0">
                 <div class="mx-auto max-w-7xl px-6 pb-2 pt-5">
                     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                        <div class="space-y-5">
+                        <div class="space-y-5 items-center content-center">
                             <div>
-                                <a href="">
+                                <a href="/">
                                     <div class="flex items-center space-x-2 text-2xl font-medium">
                                         {% for image in banner_images %}
                                             <img src="{{image.logo.url}}"   width="96" height="96" class="w-36" alt="" class=" py-8 md:py-0 g-image ">
@@ -52,32 +52,32 @@
                                     <ul role="list" class="mt-6 space-y-2">
                                         <li>
                                             <a href="{% url 'home:uon_alumni_core' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700 ">Core Values, <br> Mission & Vission
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700 ">Core Values, <br> Mission & Vission
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_history' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">History
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">History
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_exec_committee' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Executive Committee
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Executive Committee
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_secretariat' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Secretariat
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Secretariat
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_chapters' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Chapters
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Chapters
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_partners' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Partners
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700"> Partners
                                             </a>
                                         </li>
                                     </ul>
@@ -87,22 +87,22 @@
                                     <ul role="list" class="mt-6 space-y-2">
                                         <li>
                                             <a href=""
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Register
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Register
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'home:uon_alumni_categories_benefits' %}"
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Categories & Benefits
                                             </a>
                                         </li>
                                         <li>
                                             <a href=""
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Categories
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Alumni Card
                                             </a>
                                         </li>
                                         <li>
                                             <a href=""
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Alumni Card
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href=""
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Corporates
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Corporates
                                             </a>
                                         </li>
                                     </ul>
@@ -114,26 +114,26 @@
                                     <ul role="list" class="mt-6 space-y-2">
                                         <li>
                                             <a href="/pricing"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">News Letters
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">News Letters
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/blog" class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Careers
+                                            <a href="/blog" class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Careers
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/casestudies"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Downloads
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Downloads
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/terms" class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Terms
+                                            <a href="/terms" class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Terms
                                                 of Service
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/privacy"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Privacy Policy
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Privacy Policy
                                             </a>
                                         </li>
                                     </ul>
@@ -143,17 +143,17 @@
                                     <ul role="list" class="mt-6 space-y-2">
                                         <li>
                                             <a href="{% url 'home:uon_alumni_contact_us' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Contacts
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Contacts
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_contact_us' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Address
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Address
                                             </a>
                                         </li>
                                         <li>
                                             <a href="{% url 'home:uon_alumni_contact_us' %}"
-                                                class="text-md leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Location
+                                                class="text-md font-light leading-6 text-white hover:px-2 hover:bg-white hover:text-blue-700">Location
                                             </a>
                                         </li>
                                     </ul>

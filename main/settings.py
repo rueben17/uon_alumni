@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "apps.home.context_processors.images",
                 "apps.home.context_processors.date_timer", 
                 "apps.home.context_processors.contacts",
             ],

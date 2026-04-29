@@ -1,13 +1,14 @@
 from django.urls import path
 
 from apps.home.views import  (
-    # uon_alumni_home,
+    CoreValuesListView,
+    uon_alumni_home,
     uon_alumni_history,
     uon_alumni_exec_committee,
     uon_alumni_secretariat,
     uon_alumni_chapters,
     uon_alumni_chapter_detail,
-    uon_alumni_core,
+    # uon_alumni_core,
     uon_alumni_partners,
     uon_alumni_notable,
     uon_alumni_contact_us,
@@ -34,14 +35,15 @@ app_name = "home"
 
 urlpatterns = [
 
-    # path("", uon_alumni_home, name="uon_alumni_home"),
+    path("", uon_alumni_home, name="uon_alumni_home"),
     path("history/", uon_alumni_history, name="uon_alumni_history"),
     path("executive-committee/", uon_alumni_exec_committee, name="uon_alumni_exec_committee"),
     path("the-secretariat/", uon_alumni_secretariat, name="uon_alumni_secretariat"),
     path("chapters/", uon_alumni_chapters, name="uon_alumni_chapters"),
     path("chapter/<slug:chapter_slug>/", uon_alumni_chapter_detail, name='uon_alumni_chapter_detail'),
     path('chapter-detail/<slug:faculty_slug>/<slug:chapter_slug>/', uon_alumni_chapter_detail, name='uon_alumni_chapter_detail'),
-    path("our-core/", uon_alumni_core, name="uon_alumni_core"),
+    # path("our-core/", uon_alumni_core, name="uon_alumni_core"),
+    path('our-core/', CoreValuesListView.as_view(), name='uon_alumni_core'),
     path("notable-alumni/", uon_alumni_notable, name="uon_alumni_notable"),
     path("partners/", uon_alumni_partners, name="uon_alumni_partners"),
     path("uon-alumni-annual-general-meeting/", uon_alumni_agm, name="uon_alumni_agm"),

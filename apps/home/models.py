@@ -160,6 +160,49 @@ class Images(models.Model):
 
 
 
+class CoreValue(models.Model):
+    """
+    Model representing an organization's core value
+    """
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField()
+    svg_path = models.TextField(  # Changed from CharField to TextField
+        blank=True, 
+        help_text="SVG path data for the icon"
+    )
+    order = models.PositiveIntegerField(default=0, help_text="Display order")
+    is_active = models.BooleanField(default=True)
+    
+    # For background image per value
+    background_image = models.ImageField(
+        upload_to='core_values/bg/', 
+        blank=True, 
+        null=True,
+        help_text="Background image for this core value"
+    )
+    background_color = models.CharField(
+        max_length=20, 
+        default='#ffffff',
+        help_text="Fallback background color (hex code)"
+    )
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = "Core Value"
+        verbose_name_plural = "Core Values"
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('core_value_detail', kwargs={'pk': self.pk})
+
+
+
+
 class Executive(models.Model):
     
     TITLE = (

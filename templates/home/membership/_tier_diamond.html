@@ -1,72 +1,82 @@
 {% comment %}Membership tier: Diamond Life — KES 250,000 lifetime{% endcomment %}
-<div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-gray-100">
-  <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-cyan-300 bg-cyan-50 text-cyan-700 whitespace-nowrap shadow-sm">Diamond Life</span>
-  <div>
-    <p class="text-lg font-semibold text-gray-900 m-0">KES 250,000 <span class="text-sm font-normal text-gray-400">/ lifetime</span></p>
-    <p class="text-xs text-gray-500 mt-1 mb-0 flex items-center gap-1">
-      <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-      </svg>
-      27 benefits included
-    </p>
-  </div>
-</div>
+<div class="group relative block bg-sky-900 rounded-xl overflow-hidden hover:cursor-pointer min-h-[400px]">
+  
+  <img alt="Diamond sparkling background"
+    {% load static %}
+    src="{% static 'images/category/diamond.jpg' %}"
+    class="absolute inset-0 h-full w-full object-cover blur-xs opacity-60 transition-opacity group-hover:opacity-40"/>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-    Access &amp; Networking
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">All Gold benefits</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">VIP event invitations</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-blue-200 bg-blue-50 text-blue-800 leading-tight hover:bg-blue-100 transition-colors duration-150">Named alumni directory profile</span>
-  </div>
-</div>
+  <div class="relative p-5 md:p-6">
+    <div class="flex items-center gap-3.5 pb-4 mb-4 border-b border-white/20">
+      <span class="inline-block text-xs font-medium py-0.5 px-2.5 rounded-md border border-sky-300 bg-white/90 backdrop-blur-sm text-sky-800 whitespace-nowrap shadow-sm">Diamond Life</span>
+      <div>
+        <p class="text-lg font-semibold text-white m-0">KES 250,000 <span class="text-sm font-normal text-white/70">/ lifetime</span></p>
+        <p class="text-xs text-white/80 mt-1 mb-0 flex items-center gap-1">
+          <svg class="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          27 benefits included
+        </p>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-teal-500"></span>
-    Career &amp; Learning
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Premium consultancy tier</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Priority publication slot</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-teal-200 bg-teal-50 text-teal-700 leading-tight hover:bg-teal-100 transition-colors duration-150">Exclusive training seminars</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        Access &amp; Networking
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">All Gold benefits</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">VIP event invitations</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Named alumni directory profile</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-    Financial Perks
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Premium outlet discounts</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Legal &amp; financial advisory</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-amber-200 bg-amber-50 text-amber-800 leading-tight hover:bg-amber-100 transition-colors duration-150">Alumni centre shareholding input</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+        Career &amp; Learning
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Premium consultancy tier</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Priority publication slot</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Exclusive training seminars</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-    Governance Rights
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">Vote, stand &amp; nominate candidates</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-rose-200 bg-rose-50 text-rose-800 leading-tight hover:bg-rose-100 transition-colors duration-150">UON Chancellor selection panel</span>
-  </div>
-</div>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+        Financial Perks
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Premium outlet discounts</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Legal &amp; financial advisory</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Alumni centre shareholding input</span>
+      </div>
+    </div>
 
-<div class="mb-4">
-  <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-gray-400 m-0 mb-2 flex items-center gap-1.5">
-    <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span>
-    Special Recognition
-  </p>
-  <div class="flex flex-wrap gap-2">
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Diamond recognition plaque</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Named scholarship opportunity</span>
-    <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-pink-200 bg-pink-50 text-pink-800 leading-tight hover:bg-pink-100 transition-colors duration-150">Feature in annual report</span>
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+        Governance Rights
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Vote, stand &amp; nominate candidates</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">UON Chancellor selection panel</span>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <p class="text-[0.68rem] font-semibold uppercase tracking-wide text-white/70 m-0 mb-2 flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+        Special Recognition
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Diamond recognition plaque</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Named scholarship opportunity</span>
+        <span class="inline-block text-[0.72rem] py-1 px-3 rounded-full border border-white/30 bg-white/20 backdrop-blur-sm text-white leading-tight">Feature in annual report</span>
+      </div>
+    </div>
   </div>
 </div>

@@ -30,6 +30,22 @@ class BannerAdmin(admin.ModelAdmin):
     list_filter = [ 'created_at' ] #, 
 
 
+@admin.register(CoreValue)
+class CoreValueAdmin(admin.ModelAdmin):
+    list_display = ['name', 'order', 'is_active', 'created_at']
+    list_editable = ['order', 'is_active']
+    search_fields = ['name', 'description']
+    prepopulated_fields = {}  # Add if you have slug field
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('name', 'description', 'order', 'is_active')
+        }),
+        ('Visual Elements', {
+            'fields': ('svg_path', 'background_image', 'background_color'),
+            'classes': ('collapse',)
+        }),
+    )
+
 
 
 @admin.register(Faculty)
