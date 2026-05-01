@@ -8,6 +8,8 @@ django-autoslug==1.9.9
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.9.0
 django-resized==1.0.3
+factory_boy==3.3.3
+Faker==40.15.0
 gunicorn==25.3.0
 idna==3.13
 packaging==26.1

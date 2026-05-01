@@ -1108,9 +1108,6 @@
     --tw-gradient-position: to top in oklab;
     background-image: linear-gradient(var(--tw-gradient-stops));
   }
-  .bg-\[url\(\'https\:\/\/res\.cloudinary\.com\/doh3hvrdz\/image\/upload\/q_auto\/f_auto\/v1777444013\/65cb94b385f8fa001e7f6fb7_hhlhzt\.jpg\'\)\] {
-    background-image: url('https://res.cloudinary.com/doh3hvrdz/image/upload/q_auto/f_auto/v1777444013/65cb94b385f8fa001e7f6fb7_hhlhzt.jpg');
-  }
   .bg-\[url\(\'https\:\/\/res\.cloudinary\.com\/doh3hvrdz\/image\/upload\/v1\/media\/gallery\/uploads\/2026\/04\/27\/old_pic_uon_great_court_yl18hh\'\)\] {
     background-image: url('https://res.cloudinary.com/doh3hvrdz/image/upload/v1/media/gallery/uploads/2026/04/27/old_pic_uon_great_court_yl18hh');
   }
@@ -1727,10 +1724,6 @@
   }
   .blur {
     --tw-blur: blur(8px);
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .blur-md {
-    --tw-blur: blur(var(--blur-md));
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .blur-xs {

@@ -10,8 +10,15 @@ from io import BytesIO
 from PIL import Image
 from django.utils.timezone import now
 from django.utils import timezone
+from django.core.validators import RegexValidator
+from django.utils import timezone
+import random
+import string
 from datetime import datetime
 from django.core.files import File
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 # Create your models here.
 
 
@@ -103,6 +110,10 @@ class Banner(models.Model):
     )
     top_banner = ResizedImageField(size=[1400, 1400], quality=95, 
                         upload_to='banner/top_banner/%Y/%m/%d/',
+                        help_text=_("Upload your item images "), blank=True, null=True)
+    
+    bottom_banner = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='banner/bottom_banner/%Y/%m/%d/',
                         help_text=_("Upload your item images "), blank=True, null=True)
 
     image = ResizedImageField(size=[1400, 1400], quality=95, 
@@ -348,10 +359,9 @@ class Event(models.Model):
 
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
-    launched_on = models.DateTimeField(verbose_name=_("Launched On"), default=timezone.now, blank=True, null=True)
     slug = AutoSlugField(populate_from='name',
-                        unique_with=['launched_on', ],
                         editable=True, always_update=True, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _('Faculty')
@@ -556,3 +566,108 @@ class Secretariat(models.Model):
 
         return avatar
 
+
+
+class MembershipTier(models.Model):
+    TIER_TYPES = [
+        ('life', 'Life Member'),
+        ('annual', 'Annual Member'),
+        ('honorary', 'Honorary Member'),
+        ('corporate', 'Corporate Partner'),
+    ]
+    name = models.CharField(max_length=50)  # "Gold Life Member"
+    fee = models.DecimalField(max_digits=10, decimal_places=2)
+    tier_type = models.CharField(max_length=20, choices=TIER_TYPES)
+    duration_months = models.IntegerField(default=0, help_text="0 = lifetime")
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)  # for display order
+
+    def __str__(self):
+        return f"{self.name} - KES {self.fee}"
+    
+
+
+class AlumniProfile(models.Model):
+    TITLE_CHOICES = [
+        ('Mr', 'Mr'), ('Mrs', 'Mrs'), ('Ms', 'Ms'),
+        ('Dr', 'Dr'), ('Prof', 'Prof'), ('Rev', 'Rev'), ('Other', 'Other')
+    ]
+    GENDER_CHOICES = [('M', 'Male'), ('F', 'Female'), ('O', 'Other')]
+
+    # Link to Django User (One-to-One)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='alumni_profile')
+
+    # Personal details
+    title = models.CharField(max_length=10, choices=TITLE_CHOICES)
+    surname = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True)
+    maiden_name = models.CharField(max_length=100, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    date_of_birth = models.DateField()
+    id_passport_no = models.CharField(max_length=50, unique=True)
+    nationality = models.CharField(max_length=100, default='Kenyan')
+
+    # Contact details
+    postal_address = models.CharField(max_length=200, blank=True)
+    postal_code = models.CharField(max_length=20, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    phone_mobile = models.CharField(
+        max_length=15,
+        validators=[RegexValidator(r'^\+?254\d{9}$', message='Enter a valid Kenyan phone number (e.g., 2547XXXXXXXX)')]
+    )
+    phone_alt = models.CharField(max_length=15, blank=True)
+    email = models.EmailField(unique=True)
+
+    # Alumni specific
+    graduation_year = models.IntegerField(null=True, blank=True)
+    faculty = models.ForeignKey(Faculty, on_delete=models.SET_NULL, null=True, blank=True)
+    student_reg_no = models.CharField(max_length=50, blank=True)
+
+    # Membership
+    current_membership_tier = models.ForeignKey(MembershipTier, on_delete=models.SET_NULL, null=True, blank=True)
+    membership_expiry = models.DateField(null=True, blank=True)
+    is_lifetime_member = models.BooleanField(default=False)
+    membership_number = models.CharField(max_length=20, unique=True, null=True, blank=True)
+
+    # Issued items
+    membership_card_issued = models.BooleanField(default=False)
+    certificate_issued = models.BooleanField(default=False)
+    certificate_sent = models.BooleanField(default=False)
+    certificate_generated_at = models.DateTimeField(null=True, blank=True)
+    lapel_badge_issued = models.BooleanField(default=False)
+
+    # Preferences
+    receive_newsletter = models.BooleanField(default=True)
+    receive_sms_alerts = models.BooleanField(default=True)
+
+    # Meta
+    registration_date = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.title} {self.first_name} {self.surname}"
+
+    @property
+    def full_name(self):
+        return f"{self.title} {self.first_name} {self.surname}"
+
+    @property
+    def is_membership_valid(self):
+        if self.is_lifetime_member:
+            return True
+        return self.membership_expiry and self.membership_expiry >= timezone.now().date()
+
+    def generate_membership_number(self):
+        """Generate a unique membership number, e.g., UONAA/2025/001234"""
+        year = timezone.now().year
+        last = AlumniProfile.objects.filter(membership_number__startswith=f"UoNAA/{year}/").count()
+        new_num = last + 1
+        return f"UoNAA/{year}/{new_num:06d}"
+
+    def save(self, *args, **kwargs):
+        # Auto-create membership number if not exists and membership is active
+        if not self.membership_number and self.current_membership_tier and self.is_active:
+            self.membership_number = self.generate_membership_number()
+        super().save(*args, **kwargs)

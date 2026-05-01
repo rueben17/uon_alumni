@@ -1,6 +1,8 @@
 from django.contrib import admin
 from apps.home.models import*
 from django.db.models import Count
+from django.contrib.auth.models import User
+from django.utils.html import format_html
 # Register your models here.
 
 @admin.register(Article)
@@ -83,3 +85,121 @@ class ExecutiveAdmin(admin.ModelAdmin):
 class SecretariatAdmin(admin.ModelAdmin):
     list_display = ['title', 'position', 'first_name', 'middle_name', 'surname' ]
 
+@admin.register(MembershipTier)
+class MembershipTierAdmin(admin.ModelAdmin):
+    list_display = ['name', 'fee', 'tier_type', 'duration_months', 'is_active']
+    list_editable = ['fee', 'is_active']
+    list_filter = ['tier_type', 'is_active']
+
+
+# @admin.register(AlumniProfile)
+# class AlumniProfileAdmin(admin.ModelAdmin):
+#     list_display = ['full_name', 'user_link', 'email', 'phone_mobile', 'membership_number', 'membership_valid_badge', 'registration_date']
+#     list_filter = ['current_membership_tier', 'is_lifetime_member', 'membership_card_issued', 'graduation_year']
+#     search_fields = ['first_name', 'surname', 'email', 'id_passport_no', 'student_reg_no', 'membership_number']
+#     readonly_fields = ['registration_date', 'last_updated']
+#     fieldsets = (
+#         ('User Account', {
+#             'fields': ('user',)
+#         }),
+#         ('Personal Information', {
+#             'fields': ('title', 'surname', 'first_name', 'middle_name', 'maiden_name',
+#                        'gender', 'date_of_birth', 'id_passport_no', 'nationality')
+#         }),
+#         ('Contact Details', {
+#             'fields': ('postal_address', 'postal_code', 'city', 'phone_mobile', 'phone_alt', 'email')
+#         }),
+#         ('Alumni Details', {
+#             'fields': ('graduation_year', 'faculty', 'student_reg_no')
+#         }),
+#         ('Membership', {
+#             'fields': ('current_membership_tier', 'membership_expiry', 'is_lifetime_member', 'membership_number',
+#                        'membership_card_issued', 'certificate_issued', 'certificate_sent', 'certificate_generated_at', 'lapel_badge_issued')
+#         }),
+#         ('Preferences & Meta', {
+#             'fields': ('receive_newsletter', 'receive_sms_alerts', 'is_active', 'registration_date', 'last_updated')
+#         }),
+#     )
+
+#     def user_link(self, obj):
+#         return format_html('<a href="/admin/auth/user/{}/change/">{}</a>', obj.user.id, obj.user.username)
+#     user_link.short_description = 'Username'
+
+#     def membership_valid_badge(self, obj):
+#         if obj.is_membership_valid:
+#             return format_html('<span style="color:green;">✓ Valid</span>')
+#         return format_html('<span style="color:red;">✗ Expired</span>')
+#     membership_valid_badge.short_description = 'Membership Status'
+
+
+
+#     def issue_membership_card(self, request, queryset):
+#         queryset.update(membership_card_issued=True)
+#         self.message_user(request, f"{queryset.count()} membership cards marked as issued.")
+#     issue_membership_card.short_description = "Issue membership card to selected"
+
+#     def mark_as_lifetime(self, request, queryset):
+#         queryset.update(is_lifetime_member=True, membership_expiry=None)
+#         self.message_user(request, f"{queryset.count()} members marked as lifetime.")
+#     mark_as_lifetime.short_description = "Mark as lifetime members"
+
+@admin.register(AlumniProfile)
+class AlumniProfileAdmin(admin.ModelAdmin):
+    list_display = ['id', 'first_name', 'surname', 'email']
+    list_filter = ['current_membership_tier', 'is_lifetime_member', 'membership_card_issued', 'graduation_year']
+    search_fields = ['first_name', 'surname', 'email', 'id_passport_no', 'student_reg_no', 'membership_number']
+    readonly_fields = ['registration_date', 'last_updated']
+    actions = ['issue_membership_card', 'mark_as_lifetime']
+    list_per_page = 20
+    fieldsets = (
+        ('User Account', {
+            'fields': ('user',)
+        }),
+        ('Personal Information', {
+            'fields': ('title', 'surname', 'first_name', 'middle_name', 'maiden_name',
+                       'gender', 'date_of_birth', 'id_passport_no', 'nationality')
+        }),
+        ('Contact Details', {
+            'fields': ('postal_address', 'postal_code', 'city', 'phone_mobile', 'phone_alt', 'email')
+        }),
+        ('Alumni Details', {
+            'fields': ('graduation_year', 'faculty', 'student_reg_no')
+        }),
+        ('Membership', {
+            'fields': ('current_membership_tier', 'membership_expiry', 'is_lifetime_member', 'membership_number',
+                       'membership_card_issued', 'certificate_issued', 'certificate_sent', 'certificate_generated_at', 'lapel_badge_issued')
+        }),
+        ('Preferences & Meta', {
+            'fields': ('receive_newsletter', 'receive_sms_alerts', 'is_active', 'registration_date', 'last_updated')
+        }),
+    )
+
+    def user_link(self, obj):
+        return format_html('<a href="/admin/auth/user/{}/change/">{}</a>', obj.user.id, obj.user.username)
+    user_link.short_description = 'Username'
+
+    def membership_valid_badge(self, obj):
+        if obj.is_membership_valid:
+            return format_html('<span style="color:green;">✓ Valid</span>')
+        return format_html('<span style="color:red;">✗ Expired</span>')
+    membership_valid_badge.short_description = 'Membership Status'
+
+    def issue_membership_card(self, request, queryset):
+        """
+        This method runs when you select "Issue membership card to selected"
+        `queryset` contains all the selected AlumniProfile objects
+        """
+        count = queryset.update(membership_card_issued=True)
+        self.message_user(request, f"{count} membership card(s) marked as issued.")
+    
+    # This is the label that appears in the dropdown
+    issue_membership_card.short_description = "Issue membership card to selected"
+
+    def mark_as_lifetime(self, request, queryset):
+        """
+        This method runs when you select "Mark as lifetime members"
+        """
+        count = queryset.update(is_lifetime_member=True, membership_expiry=None)
+        self.message_user(request, f"{count} member(s) marked as lifetime.")
+    
+    mark_as_lifetime.short_description = "Mark as lifetime members"
