@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from apps.home.models import*
 from django.views.generic import ListView
+from django.contrib import messages
+from apps.home.forms import AlumniRegistrationForm
 # Create your views here.
 
 
@@ -109,7 +111,22 @@ def uon_alumni_partners(request):
 
 
 def uon_alumni_register(request):
-    return render(request, 'home/uon_alumni_register.html')
+    if request.method == 'POST':
+        form = AlumniRegistrationForm(request.POST)
+        if form.is_valid():
+            alumni = form.save(commit=False)
+            # Payment integration will go here later
+            alumni.save()
+            messages.success(request, 'Registration successful! Complete your payment to activate membership.')
+            # return redirect('a:registration_success', alumni_id=alumni.id)
+    else:
+        form = AlumniRegistrationForm()
+
+    context = {
+        'form': form,
+        'membership_tiers': MembershipTier.objects.filter(is_active=True),
+    }
+    return render(request, 'home/uon_alumni_register.html', context)
 
 
 

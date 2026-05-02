@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     "apps.home",
     "apps.store",
     'cloudinary',
+    'crispy_forms',
+    'crispy_tailwind',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +156,8 @@ else:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 USE_THOUSAND_SEPARATOR = True
+
+
+# Crispy Forms Configuration
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = "tailwind"

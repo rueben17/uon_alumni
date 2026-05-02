@@ -1,5 +1,12 @@
 @import "tailwindcss"; 
 
+
+@layer components {
+  .login-input {
+    @apply block w-full p-2 appearance-none rounded-sm border border-gray-600 text-sm outline-none focus:border-gray-700 focus:ring focus:ring-gray-500 focus:bg-white focus:text-gray-600 focus:shadow;
+  }
+}
+  
 .body {
     margin: 0;
     padding: 0;

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 <title>{% block title %} UoNAA | Join Us  {% endblock %}</title>
 
 
@@ -10,7 +10,10 @@
              {% include "snippets/banner.html" %}
 
             <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
-                    
+                <form action="" method="post">
+                    {{form|crispy}}      
+                    <button type="submit"></button>
+                </form>         
             </section>
 
             {% include "snippets/footer.html" %}
