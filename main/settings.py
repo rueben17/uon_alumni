@@ -41,6 +41,8 @@ CSRF_TRUSTED_ORIGINS = [
             'https://uonalumni.or.ke',
                 'https://www.uonalumni.or.ke',
                 ]
+                
+PREPEND_WWW = True
 
 # Application definition
 INSTALLED_APPS = [
