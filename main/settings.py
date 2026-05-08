@@ -41,7 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
             'https://uonalumni.or.ke',
                 'https://www.uonalumni.or.ke',
                 ]
-]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
