@@ -35,7 +35,12 @@ ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['https://uonalumni.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.uonalumni.or.ke',
+    'https://uonalumni.or.ke',
+]
+
+PREPEND_WWW = True
 
 # Application definition
 INSTALLED_APPS = [
