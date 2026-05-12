@@ -1,0 +1,19 @@
+<div class="py-2 px-2 lg:w-1/2 ">
+    <a href="{{article.get_absolute_url}}" class="cursor-default  ">
+        <div class="h-full py-2 px-1 flex items-center bg-white rounded-lg shadow transition hover:shadow-xl">
+            <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
+                <span class="text-gray-700 pb-2 mb-2 border-b-2 border-gray-300 capitalize">{{ article.created_at|date:"d" }}</span>
+                <span class="font-medium uppercase text-base text-gray-800 title-font leading-none">{{ article.created_at|date:"b" }}</span>
+                <span class="font-semibold text-sm text-gray-800 title-font mt-2 leading-none">{{ article.created_at|date:"Y"}}</span>
+            </div>
+            <div class="flex-grow pl-2">
+                <h1 class="text-base font-bold text-black mb-1">{{article.title}}</h1>
+                <p class="text-sm leading-relaxed mb-2 text-left">
+                    {{article.body|truncatewords:20}} <br>
+                    <a href="{{article.get_absolute_url}}" class="text-xs text-blue-700 cursor-pointer">Read more</a>
+                </p>
+            </div>
+        </div>
+    </a>
+</div>
+

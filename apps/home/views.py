@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from urllib3 import request
 from apps.home.models import*
 from django.views.generic import ListView
 from django.contrib import messages
@@ -10,7 +11,7 @@ from apps.home.forms import AlumniRegistrationForm
 def uon_alumni_home(request):
     articles = Article.objects.all().order_by('-date_updated')[:6]
     # ads = Ad.objects.all()
-    images = Images.objects.all().order_by('-created_at')[:19]
+    
     featured_articles = Article.objects.filter(is_feature=True).order_by('-created_at')[:1]
     highlighted_articles = Article.objects.filter(is_highlighted=True).order_by('-created_at')[:6]
     
@@ -27,6 +28,15 @@ def uon_alumni_home(request):
 def uon_alumni_history(request):
     return render(request, 'home/uon_alumni_history.html')
 
+
+def uon_alumni_gallery(request):
+    images = Images.objects.all().order_by('-created_at')[:19]
+
+    context = {
+        "images": images,
+        # "ads": ads
+    }
+    return render(request, 'home/uon_alumni_gallery.html', context)
 
 # def uon_alumni_core(request):
 #     return render(request, 'home/uon_alumni_core.html')
@@ -156,8 +166,7 @@ def uon_alumni_downloads(request):
     return render(request, 'home/uon_alumni_downloads.html')
 
 
-def uon_alumni_gallery(request):
-    return render(request, 'home/uon_alumni_gallery.html')
+
 
 
 def uon_alumni_shop(request):

@@ -34,12 +34,19 @@ DEBUG=False
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+
 CORS_ALLOW_ALL_ORIGINS = True
+
 CSRF_TRUSTED_ORIGINS = [
     'https://www.uonalumni.or.ke',
-    'https://uonalumni.or.ke',
+    # 'https://uonalumni.or.ke',
+    'http://127.0.0.1:8000/',
 ]
+
+if DEBUG:
+    SECURE_SSL_REDIRECT = False
+else:
+    SECURE_SSL_REDIRECT = True
 
 PREPEND_WWW = True
 
@@ -128,6 +135,7 @@ CLOUDINARY_STORAGE = {
 # Environment-specific settings — toggle DJANGO_DEBUG in .env
 # -------------------------------------------------------
 if DEBUG:
+    
     # Local development: SQLite + local media
     DATABASES = {
         'default': {
@@ -143,6 +151,7 @@ if DEBUG:
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         },
     }
+    
 else:
     # Production: Neon Postgres + Cloudinary
     DATABASES = {

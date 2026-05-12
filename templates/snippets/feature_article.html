@@ -1,0 +1,25 @@
+
+<article class=" overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+      {% if featured_article.thumbnail %}
+        <img src="{{featured_article.get_thumbnail}}" alt="{{featured_article.title}}" id="MainImg" class="object-top h-full w-full"/>
+      {% else %}
+        <img class="object-center h-full w-full" src="{{featured_article.thumbnail_url}}" alt="{{highlighted_article.title}}" />
+      {% endif %}
+      <div class="bg-white p-4 sm:p-6">
+        <time datetime="2022-10-10" class="font-medium text-base text-gray-800 title-font leading-none">
+           {{featured_article.created_at}} 
+        </time>
+    
+        <a href="#">
+          <h2 class="mt-0.5 text-lg font-bold text-black "> {{featured_article.title}}</h2>
+        </a>
+    
+        <p class="mt-2  text-sm/relaxed text-black">
+          {{featured_article.body|truncatewords:15}}
+          <br>
+          <a href="{{featured_article.get_absolute_url}}" class="text-xs text-blue-700">Read more</a>
+        </p>
+      </div>
+</article> 
+
+
