@@ -33,6 +33,9 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
 ]
 
+print(f"DEBUG={DEBUG}, SSL_REDIRECT={SECURE_SSL_REDIRECT}")
+
+
 # -------------------------------------------------------
 # Application definition
 # -------------------------------------------------------
