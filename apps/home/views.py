@@ -19,7 +19,6 @@ def uon_alumni_home(request):
         "articles": articles,
         "featured_articles": featured_articles,
         "highlighted_articles": highlighted_articles,
-        "images": images,
         # "ads": ads
     }
     return render(request, "home/alumni_home.html", context)
