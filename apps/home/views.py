@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from urllib3 import request
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
+from functools import reduce
+from operator import attrgetter
+from operator import or_
 from apps.home.models import*
 from django.views.generic import ListView
 from django.contrib import messages
@@ -29,7 +34,7 @@ def uon_alumni_history(request):
 
 
 def uon_alumni_gallery(request):
-    images = Images.objects.all().order_by('-created_at')[:19]
+    images = Images.objects.all().order_by('-created_at')[:38]
 
     context = {
         "images": images,
@@ -176,5 +181,52 @@ def uon_alumni_contact_us(request):
 
 
 
-#Membership views
+def date_timer(request):
+    date = datetime.now().strftime(" %B %d, %Y at %I:%M%p ")
+    context = {"date": date,}
+    return render(request, 'snippets/date_time.html', context)
+
+
+
+BLOG_POSTS_PER_PAGE = 6
+
+def get_articles_queryset(query=None):
+    if query is None:
+        return Article.objects.none()
+
+    queries = query.split(" ")
+    query_filter = reduce(or_, (Q(title__icontains=q) | Q(body__icontains=q) for q in queries))
+    return Article.objects.filter(query_filter).distinct()
+
+
+def uon_alumni_all_news(request, *args, **kwargs):
+
+    context = {}
+
+    query = ""
+    
+    if request.GET:
+        query = request.GET.get('q', '')
+        context['query'] = str(query)
+    
+    articles = sorted(get_articles_queryset(query), key=attrgetter('date_updated'), reverse=True)
+    
+
+    page = request.GET.get('page', 1) 
+    blog_posts_paginator = Paginator(articles, BLOG_POSTS_PER_PAGE)
+    
+    try:
+        articles = blog_posts_paginator.page(page)
+    except PageNotAnInteger:
+        articles = blog_posts_paginator.page(BLOG_POSTS_PER_PAGE)
+    except EmptyPage:
+        articles = blog_posts_paginator.page(blog_posts_paginator.num_pages)
+
+
+    context = {
+        "articles": articles,
+        "page_obj": articles,  
+        "query": query or ""
+    }
+    return render(request, 'home/uon_alumni_all_news.html', context)
 

@@ -10,10 +10,12 @@ django-cloudinary-storage==0.3.0
 django-cors-headers==4.9.0
 django-crispy-forms==2.6
 django-resized==1.0.3
+django-sitemaps==2.0.2
 factory_boy==3.3.3
 Faker==40.15.0
 gunicorn==25.3.0
 idna==3.13
+lxml==6.1.0
 packaging==26.1
 pillow==12.2.0
 psycopg2-binary==2.9.12

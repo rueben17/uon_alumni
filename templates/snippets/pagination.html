@@ -1,0 +1,75 @@
+{% comment %} <div class=" flex flex-wrap justify-around mx-auto  items-center">
+    <div class="ui divider w-full"></div>
+    <div class="text-center flex flex-wrap gap-4" id="load-more">
+            <div class="">
+                    {% if articles.has_previous %}
+                    <a  class="bg-blue-500 pl-5 pr-5 pt-0.5 pb-0.5 text-white rounded-md hover:bg-blue-600" 
+                            href="?{% if query %}q={{query}}&{% endif %}page={{ articles.previous_page_number }}">Back </a>
+                    {% endif %}
+
+            </div>
+    
+
+            <div class="">
+                    <span class='font-semibold text-base text-gray-900 dark:text-white ml-2 mr-2'>
+                            Page {{ articles.number }} of {{ articles.paginator.num_pages }}
+                    </span>
+            </div>
+
+            <div class="">
+                    {% if articles.has_next %}
+                    <a class="bg-blue-500 pl-5 pr-5 pt-0.5 pb-0.5 text-white rounded-md hover:bg-blue-600"
+                            href="?{% if query %}q={{query}}&{% endif %}page={{ articles.next_page_number }}"> Next</a>
+                    {% endif %}
+            </div>
+    
+
+</div> {% endcomment %}
+
+
+
+
+
+<div class="flex flex-col items-center mt-5">
+        <div class="ui divider w-full"></div>
+        <!-- Help text -->
+         <div class="flex gap-x-1">
+                <p class="text-md">Showing</p> 
+                        <span class="font-semibold">{{ articles.start_index }}</span>
+                <p class="text-md">to</p>
+                        <span class="font-semibold">{{ articles.end_index }}</span>
+                <p class="text-md">of</p>
+                        <span class="font-semibold">{{ articles.paginator.count }}</span>
+                <p class="text-md">Articles</p>
+         </div>
+        {% comment %} <span class="text-sm text-gray-700 dark:text-gray-400">
+            Showing {{ articles.start_index }} to {{ articles.end_index }} of {{ articles.paginator.count }} Entries
+        </span> {% endcomment %}
+        <!-- Buttons -->
+        <div class="inline-flex mt-2 xs:mt-0 gap-1.5">
+            {% if articles.has_previous %}
+                <a href="?{% if query %}q={{query}}&{% endif %}page={{ articles.previous_page_number }}">
+                    <button class="flex items-center justify-center hover:cursor-pointer px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-sm hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        Prev
+                    </button>
+                </a>
+            {% else %}
+                <button class="flex items-center justify-center hover:cursor-pointer px-3 h-8 text-sm font-medium text-white bg-gray-800 rounded-sm hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" disabled>
+                    Prev
+                </button>
+            {% endif %}
+            
+            {% if articles.has_next %}
+                <a href="?{% if query %}q={{query}}&{% endif %}page={{ articles.next_page_number }}">
+                    <button class="flex items-center justify-center hover:cursor-pointer px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        Next
+                    </button>
+                </a>
+            {% else %}
+                <button class="flex items-center justify-center hover:cursor-pointer px-3 h-8 text-sm font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" disabled>
+                    Next
+                </button>
+            {% endif %}
+        </div>
+</div>
+      
