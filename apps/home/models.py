@@ -111,6 +111,9 @@ class Banner(models.Model):
     top_banner = ResizedImageField(size=[1400, 1400], quality=95, 
                         upload_to='banner/top_banner/%Y/%m/%d/',
                         help_text=_("Upload your item images "), blank=True, null=True)
+    middle_banner = ResizedImageField(size=[1400, 1400], quality=95, 
+                        upload_to='banner/middle_banner/%Y/%m/%d/',
+                        help_text=_("Upload your item images "), blank=True, null=True)
     
     bottom_banner = ResizedImageField(size=[1400, 1400], quality=95, 
                         upload_to='banner/bottom_banner/%Y/%m/%d/',

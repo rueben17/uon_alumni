@@ -26,7 +26,7 @@ from apps.home.views import  (
     uon_alumni_all_news,
     uon_alumni_article_detail,
     uon_alumni_gallery,
-    # uon_alumni_gallery_filter,
+    uon_alumni_gallery_filter,
     # uon_alumni_uploads, 
     uon_alumni_consultancy_training  
 )
@@ -65,6 +65,6 @@ urlpatterns = [
     path("uon-alumni-news/", uon_alumni_all_news, name="uon_alumni_all_news"),
     path("article-detail/<slug:article_slug>/", uon_alumni_article_detail, name="uon_alumni_article_detail"),
     path("uon-alumni-gallery/", uon_alumni_gallery, name="uon_alumni_gallery"),
-    # path("chapter-gallery/<slug:chapter_slug>/", uon_alumni_gallery_filter, name="uon_alumni_gallery_filter"),
+    path("chapter-gallery/<slug:chapter_slug>/", uon_alumni_gallery_filter, name="uon_alumni_gallery_filter"),
     
 ]

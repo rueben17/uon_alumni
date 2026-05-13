@@ -38,15 +38,27 @@ def uon_alumni_history(request):
 
 def uon_alumni_gallery(request):
     images = Images.objects.all().order_by('-created_at')[:38]
-
+    chapters = Chapter.objects.all().order_by('-year_launched')    
     context = {
         "images": images,
-        # "ads": ads
+        "chapters": chapters,
     }
     return render(request, 'home/uon_alumni_gallery.html', context)
 
-# def uon_alumni_core(request):
-#     return render(request, 'home/uon_alumni_core.html')
+
+def uon_alumni_gallery_filter(request, chapter_slug=None):
+    
+    chapters = Chapter.objects.all().order_by('-year_launched')
+    if request.htmx:
+        chapter = get_object_or_404(Chapter, slug=chapter_slug)
+        images = Images.objects.filter(chapter=chapter).order_by('-created_at')
+        context = {
+            "chapter": chapter,
+            "images": images,
+        }
+        return render(request, 'snippets/chapter_gallery_snippet.html', context)
+    else:
+        return redirect("home:uon_alumni_gallery")
 
 
 class CoreValuesListView(ListView):

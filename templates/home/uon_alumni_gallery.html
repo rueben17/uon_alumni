@@ -20,13 +20,23 @@
                             from milestone celebrations and professional forums to community service and networking events that bridge continents and generations.
                         </p>
                     </div>
+                    <section class="p-4 bg-slate-100">
+                        <div class="flex flex-wrap w-full p-2 gap-1 md:gap-2 justify-center items-center text-base  md:text-md">
+                            {% for chapter in chapters %}
+                            <a  hx-get="{% url 'home:uon_alumni_gallery_filter' chapter.slug %}" 
+                                hx-target="#chaptergallery" 
+                                hx-push-url="true"
+                                class="bg-blue-400 hover:bg-yellow-400 text-white hover:text-black text-center rounded-full text-sm px-4 py-1 cursor-pointer">{{chapter.name}}</a>
+                            {% endfor %}
+                        </div>
+                    </section>
                     <section class="w-full mt-10 ">
-                        <div class="image-gallery">
+                        <div class="image-gallery " id="chaptergallery">
                             {% if images %}
                                 {% for image in images %}
                                     <div class="image-box">
                                         <a href="{{ image.image.url }}" data-lightbox="gridImage">
-                                            <img src="{{ image.image.url }}" alt="" class="h-full w-full object-cover" >
+                                            <img src="{{ image.image.url }}" alt="" class="h-48 w-96 object-cover" >
                                         </a>
                                     </div>
                                 {% endfor %}

@@ -9,6 +9,7 @@ django-autoslug==1.9.9
 django-cloudinary-storage==0.3.0
 django-cors-headers==4.9.0
 django-crispy-forms==2.6
+django-htmx==1.27.0
 django-resized==1.0.3
 django-sitemaps==2.0.2
 factory_boy==3.3.3
