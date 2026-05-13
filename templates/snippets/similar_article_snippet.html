@@ -1,0 +1,34 @@
+
+<article class="flex bg-white overflow-hidden rounded-md shadow transition hover:shadow-xl hover:cursor-pointer">
+  <div class="rotate-180 p-2 [writing-mode:vertical-lr]">
+    <time datetime="2022-10-10" class="flex items-center justify-between gap-4 text-xs font-semibold text-gray-900 uppercase">
+      <span>{{ article.created_at|date:"Y"}}</span>
+      <span class="w-px flex-1 bg-gray-900/10"></span>
+            <span>{{ article.created_at|date:"F j" }}</span>
+    </time>
+  </div>
+
+  <div class="hidden sm:block sm:basis-56">
+    <img alt="" src="https://images.unsplash.com/photo-1609557927087-f9cf8e88de18?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="aspect-square h-full w-full object-cover">
+  </div>
+
+  <div class="flex flex-1 flex-col justify-between">
+    <div class="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+      <a href="{{article.get_absolute_url}}">
+        <h3 class="font-bold text-gray-900 uppercase">
+          {{article.title}}
+        </h3>
+      </a>
+
+      <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-700">
+        {{article.body|truncatewords:60}}
+      </p>
+    </div>
+
+    <div class="sm:flex sm:items-end sm:justify-end">
+      <a href="{{article.get_absolute_url}}" class="block bg-blue-400 px-5 py-3 text-center text-xs font-bold text-white uppercase transition hover:bg-yellow-400 hover:text-black">
+        Read Article
+      </a>
+    </div>
+  </div>
+</article>

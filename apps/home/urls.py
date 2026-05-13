@@ -24,7 +24,7 @@ from apps.home.views import  (
     #other links
     date_timer,
     uon_alumni_all_news,
-    # uon_alumni_article_detail,
+    uon_alumni_article_detail,
     uon_alumni_gallery,
     # uon_alumni_gallery_filter,
     # uon_alumni_uploads, 
@@ -63,7 +63,7 @@ urlpatterns = [
     path("date_timer/", date_timer, name="date_timer"),
     # path('uon-alumni-uploads/<uuid:event_id>/', uon_alumni_uploads, name="uon_alumni_uploads" ),
     path("uon-alumni-news/", uon_alumni_all_news, name="uon_alumni_all_news"),
-    # path("article-detail/<slug:article_slug>/", uon_alumni_article_detail, name="uon_alumni_article_detail"),
+    path("article-detail/<slug:article_slug>/", uon_alumni_article_detail, name="uon_alumni_article_detail"),
     path("uon-alumni-gallery/", uon_alumni_gallery, name="uon_alumni_gallery"),
     # path("chapter-gallery/<slug:chapter_slug>/", uon_alumni_gallery_filter, name="uon_alumni_gallery_filter"),
     

@@ -1,5 +1,5 @@
 <div class="py-2 px-2 lg:w-1/2 ">
-    <a href="" class="cursor-pointer text-center ">
+    <a href="{{article.get_absolute_url}}" class="cursor-pointer  ">
         <div class="h-full py-2 p-1 flex items-center bg-white rounded-sm shadow transition hover:shadow-xl">
             <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
                 <span class="text-gray-700 pb-2 mb-2 border-b-2 border-gray-300 capitalize">{{ article.created_at|date:"d" }}</span>
@@ -10,7 +10,7 @@
                 <h1 class="text-sm font-semibold text-black mb-1">{{article.title}}</h1>
                 <p class="text-xs leading-relaxed mb-2 text-left">
                     {{article.body|truncatewords:35}} <br>
-                    <a href="" class="text-xs text-blue-700 cursor-pointer">Read more</a>
+                    <a href="{{article.get_absolute_url}}" class="text-xs text-blue-700 cursor-pointer">Read more</a>
                 </p>
             </div>
         </div>

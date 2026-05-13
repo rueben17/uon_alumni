@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from urllib3 import request
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from functools import reduce
-from operator import attrgetter
 from operator import or_
-from apps.home.models import*
 from django.views.generic import ListView
 from django.contrib import messages
+import random
+from datetime import datetime
+from apps.home.models import (
+    Article, Chapter, Faculty, CoreValue, Executive, Secretariat, Images,
+    MembershipTier, Banner
+)
 from apps.home.forms import AlumniRegistrationForm
 # Create your views here.
 
@@ -103,11 +106,13 @@ def uon_alumni_chapters(request):
 def uon_alumni_chapter_detail(request, chapter_slug=None, faculty_slug=None):
     chapter = get_object_or_404(Chapter, slug=chapter_slug)
     
+    faculty = None
     if faculty_slug:
         faculty = get_object_or_404(Faculty, slug=faculty_slug)
 
     context = {
         "chapter": chapter,
+        "faculty": faculty,
     }
     return render(request, 'home/uon_alumni_chapter_detail.html', context)
 
@@ -132,7 +137,7 @@ def uon_alumni_register(request):
             # Payment integration will go here later
             alumni.save()
             messages.success(request, 'Registration successful! Complete your payment to activate membership.')
-            # return redirect('a:registration_success', alumni_id=alumni.id)
+            return redirect('home:uon_alumni_register')
     else:
         form = AlumniRegistrationForm()
 
@@ -196,32 +201,22 @@ def get_articles_queryset(query=None):
 
     queries = query.split(" ")
     query_filter = reduce(or_, (Q(title__icontains=q) | Q(body__icontains=q) for q in queries))
-    return Article.objects.filter(query_filter).distinct()
+    return Article.objects.filter(query_filter).order_by('-date_updated').distinct()
 
 
 def uon_alumni_all_news(request, *args, **kwargs):
-
-    context = {}
-
-    query = ""
+    query = request.GET.get('q', '')
+    articles_qs = get_articles_queryset(query)
     
-    if request.GET:
-        query = request.GET.get('q', '')
-        context['query'] = str(query)
-    
-    articles = sorted(get_articles_queryset(query), key=attrgetter('date_updated'), reverse=True)
-    
-
     page = request.GET.get('page', 1) 
-    blog_posts_paginator = Paginator(articles, BLOG_POSTS_PER_PAGE)
+    blog_posts_paginator = Paginator(articles_qs, BLOG_POSTS_PER_PAGE)
     
     try:
         articles = blog_posts_paginator.page(page)
     except PageNotAnInteger:
-        articles = blog_posts_paginator.page(BLOG_POSTS_PER_PAGE)
+        articles = blog_posts_paginator.page(1)
     except EmptyPage:
         articles = blog_posts_paginator.page(blog_posts_paginator.num_pages)
-
 
     context = {
         "articles": articles,
@@ -230,3 +225,23 @@ def uon_alumni_all_news(request, *args, **kwargs):
     }
     return render(request, 'home/uon_alumni_all_news.html', context)
 
+
+def uon_alumni_article_detail(request, article_slug=None):
+    article = get_object_or_404(Article, slug=article_slug)
+    
+    # Get related articles from the same chapter if chapter exists
+    similar_articles = []
+    related_articles = []
+    if article.chapter:
+        random_chapter_articles = list(article.chapter.articles.exclude(id=article.id))
+        similar_articles = random.sample(random_chapter_articles, min(4, len(random_chapter_articles)))
+        related_articles = random_chapter_articles[:5]
+    
+    images = article.images.all()
+    context = {
+        "article": article,
+        "similar_articles": similar_articles,
+        "related_articles": related_articles,
+        "images": images,
+    }
+    return render(request, 'home/uon_alumni_article_detail.html', context)

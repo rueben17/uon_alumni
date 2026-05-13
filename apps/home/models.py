@@ -71,7 +71,7 @@ class Article(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse("home:article_detail", args=[self.slug])
+        return reverse("home:uon_alumni_article_detail", args=[self.slug])
     
     def get_thumbnail(self):
         if self.thumbnail:
