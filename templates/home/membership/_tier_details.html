@@ -1,0 +1,16 @@
+<div class="card mt-3">
+    <div class="card-body">
+        <h5>{{ tier.name }}</h5>
+        <p><strong>Amount to Pay:</strong> KES {{ tier.fee|floatformat:2 }}</p>
+        <p><strong>Duration:</strong> 
+            {% if tier.duration_months == 0 %}
+                Lifetime
+            {% elif tier.duration_months == 12 %}
+                Annual (1 year)
+            {% else %}
+                {{ tier.duration_months }} months
+            {% endif %}
+        </p>
+        <p><strong>Tier Type:</strong> {{ tier.get_tier_type_display|default:tier.tier_type }}</p>
+    </div>
+</div>

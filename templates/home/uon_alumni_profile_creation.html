@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+
+{% block title %}UoNAA | Complete Your Profile{% endblock %}
+
+{% block content %}
+<div class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px !important;">
+    {% include "snippets/navbar.html" %}
+    {% include "snippets/banner.html" %}
+
+    <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm flex flex-col items-center justify-center">
+        {% comment %} <form action="" method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <h3 class="text-lg font-semibold mb-4">Complete Your Alumni Profile</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label for="{{ form.title.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.title.label }}{% if form.title.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}<div class="text-red-500 text-sm">{{ form.title.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.surname.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.surname.label }}{% if form.surname.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.surname }}
+                    {% if form.surname.errors %}<div class="text-red-500 text-sm">{{ form.surname.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.first_name.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.first_name.label }}{% if form.first_name.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}<div class="text-red-500 text-sm">{{ form.first_name.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.middle_name.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.middle_name.label }}</label>
+                    {{ form.middle_name }}
+                    {% if form.middle_name.errors %}<div class="text-red-500 text-sm">{{ form.middle_name.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="{{ form.maiden_name.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.maiden_name.label }}</label>
+                    {{ form.maiden_name }}
+                    {% if form.maiden_name.errors %}<div class="text-red-500 text-sm">{{ form.maiden_name.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.gender.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.gender.label }}{% if form.gender.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.gender }}
+                    {% if form.gender.errors %}<div class="text-red-500 text-sm">{{ form.gender.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.date_of_birth.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.date_of_birth.label }}{% if form.date_of_birth.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.date_of_birth }}
+                    {% if form.date_of_birth.errors %}<div class="text-red-500 text-sm">{{ form.date_of_birth.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="{{ form.id_passport_no.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.id_passport_no.label }}{% if form.id_passport_no.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.id_passport_no }}
+                    {% if form.id_passport_no.errors %}<div class="text-red-500 text-sm">{{ form.id_passport_no.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.nationality.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.nationality.label }}{% if form.nationality.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.nationality }}
+                    {% if form.nationality.errors %}<div class="text-red-500 text-sm">{{ form.nationality.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold mb-4">Contact Details</h3>
+            <div class="grid grid-cols-1 gap-4">
+                <div>
+                    <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}<div class="text-red-500 text-sm">{{ form.email.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="{{ form.phone_mobile.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.phone_mobile.label }}{% if form.phone_mobile.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.phone_mobile }}
+                    {% if form.phone_mobile.errors %}<div class="text-red-500 text-sm">{{ form.phone_mobile.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.phone_alt.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.phone_alt.label }}</label>
+                    {{ form.phone_alt }}
+                    {% if form.phone_alt.errors %}<div class="text-red-500 text-sm">{{ form.phone_alt.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="md:col-span-2">
+                    <label for="{{ form.postal_address.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.postal_address.label }}</label>
+                    {{ form.postal_address }}
+                    {% if form.postal_address.errors %}<div class="text-red-500 text-sm">{{ form.postal_address.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.postal_code.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.postal_code.label }}</label>
+                    {{ form.postal_code }}
+                    {% if form.postal_code.errors %}<div class="text-red-500 text-sm">{{ form.postal_code.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.city.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.city.label }}</label>
+                    {{ form.city }}
+                    {% if form.city.errors %}<div class="text-red-500 text-sm">{{ form.city.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold mb-4">Academic Background</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="{{ form.graduation_year.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.graduation_year.label }}{% if form.graduation_year.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.graduation_year }}
+                    {% if form.graduation_year.errors %}<div class="text-red-500 text-sm">{{ form.graduation_year.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.faculty.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.faculty.label }}{% if form.faculty.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                    {{ form.faculty }}
+                    {% if form.faculty.errors %}<div class="text-red-500 text-sm">{{ form.faculty.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.student_reg_no.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.student_reg_no.label }}</label>
+                    {{ form.student_reg_no }}
+                    {% if form.student_reg_no.errors %}<div class="text-red-500 text-sm">{{ form.student_reg_no.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <h3 class="text-lg font-semibold mb-4">Communication Preferences</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="{{ form.receive_newsletter.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.receive_newsletter.label }}</label>
+                    {{ form.receive_newsletter }}
+                    {% if form.receive_newsletter.errors %}<div class="text-red-500 text-sm">{{ form.receive_newsletter.errors }}</div>{% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.receive_sms_alerts.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.receive_sms_alerts.label }}</label>
+                    {{ form.receive_sms_alerts }}
+                    {% if form.receive_sms_alerts.errors %}<div class="text-red-500 text-sm">{{ form.receive_sms_alerts.errors }}</div>{% endif %}
+                </div>
+            </div>
+            
+            <div>
+                <label for="{{ form.agree_terms.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.agree_terms.label }}</label>
+                {{ form.agree_terms }}
+                {% if form.agree_terms.errors %}<div class="text-red-500 text-sm">{{ form.agree_terms.errors }}</div>{% endif %}
+            </div>
+            
+            <div class="text-sm text-gray-500 mt-2">
+                By registering, you agree to our <a href="/privacy" class="text-blue-600 hover:underline">Privacy Policy</a>.
+            </div>
+            
+            <div class="flex justify-end">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Complete Profile
+                </button>
+            </div>
+        </form> {% endcomment %}
+
+        <div class="container px-6 m-auto">
+            <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                <div class="col-span-4 lg:col-span-6">
+                    Column 1/2
+                </div>
+                <div class="col-span-4 lg:col-span-6">
+                    
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        
+                        <h3 class="text-lg font-semibold mb-4">User Registration</h3>
+                        
+                       
+                         {{ form|crispy }} 
+   
+                         
+                        <div class="w-full mt-4">
+                            <button type="submit" class="w-full cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include "snippets/footer.html" %}
+</div>
+{% endblock %}

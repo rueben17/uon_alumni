@@ -12,6 +12,8 @@ from django.utils.timezone import now
 from django.utils import timezone
 from django.core.validators import RegexValidator
 from django.utils import timezone
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 import random
 import string
 from datetime import datetime
@@ -32,7 +34,6 @@ class Title(models.CharField):
 
 class Article(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     ARTICLE_TYPE_CHOICES = [
         ('article', _('Article')),
         ('workshop', _('Workshop')),
@@ -46,11 +47,14 @@ class Article(models.Model):
         default='article',
         verbose_name=_("Article Type")
     )
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='articles')
     chapter = models.ForeignKey('Chapter', on_delete=models.CASCADE, related_name="articles",  blank=True, null=True)
     title =  Title(_("Title"), help_text=_("Required"), max_length=250)
     body = models.TextField()
     quote = models.TextField(max_length=1000,  blank=True, null=True)
     thumbnail = models.ImageField(upload_to='articles/images/', blank=True, null=True)
+    article_banner_image = models.ImageField(upload_to='articles/banners/', blank=True, null=True)
     thumbnail_url = models.URLField(blank=True, null=True)
     created_at = models.DateTimeField(verbose_name=_("Created at"), default=timezone.now, blank=True)
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated", blank=True)
@@ -97,6 +101,13 @@ class Article(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+
+
+    def get_article_banner_image(self):
+        """Return the URL for the article banner image or a placeholder."""
+        if self.article_banner_image:
+            return self.article_banner_image.url
+        return 'https://via.placeholder.com/1500x625.jpg'
 
 
 
@@ -588,6 +599,22 @@ class MembershipTier(models.Model):
     def __str__(self):
         return f"{self.name} - KES {self.fee}"
     
+    def is_lifetime(self):
+        """Check if this tier is a lifetime membership"""
+        return self.tier_type == 'life' or self.duration_months == 0
+    
+    def get_expiry_date(self, start_date=None):
+        """Calculate expiry date based on tier duration"""
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        if start_date is None:
+            start_date = timezone.now().date()
+        
+        if self.is_lifetime():
+            return None  # Never expires
+        
+        return start_date + timedelta(days=self.duration_months * 30)   
 
 
 class AlumniProfile(models.Model):
@@ -620,7 +647,7 @@ class AlumniProfile(models.Model):
         validators=[RegexValidator(r'^\+?254\d{9}$', message='Enter a valid Kenyan phone number (e.g., 2547XXXXXXXX)')]
     )
     phone_alt = models.CharField(max_length=15, blank=True)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=False, blank=True, null=True)
 
     # Alumni specific
     graduation_year = models.IntegerField(null=True, blank=True)
@@ -655,22 +682,249 @@ class AlumniProfile(models.Model):
     @property
     def full_name(self):
         return f"{self.title} {self.first_name} {self.surname}"
+        
+    def generate_membership_number(self):
+        """Generate a unique membership number, e.g., UoNAA/001234/2025"""
+        from django.utils import timezone
+        
+        year = timezone.now().year
+        # Count existing membership numbers for this year
+        last = AlumniProfile.objects.filter(
+            membership_number__endswith=f"/{year}"
+        ).count()
+        new_num = last + 1
+        return f"UoNAA/{new_num:06d}/{year}"
 
     @property
     def is_membership_valid(self):
+        """Check if current membership is valid"""
         if self.is_lifetime_member:
             return True
-        return self.membership_expiry and self.membership_expiry >= timezone.now().date()
+        if self.membership_expiry:
+            return self.membership_expiry >= timezone.now().date()
+        return False
 
-    def generate_membership_number(self):
-        """Generate a unique membership number, e.g., UONAA/2025/001234"""
-        year = timezone.now().year
-        last = AlumniProfile.objects.filter(membership_number__startswith=f"UoNAA/{year}/").count()
-        new_num = last + 1
-        return f"UoNAA/{year}/{new_num:06d}"
+    def assign_membership_tier(self, tier, payment_date=None):
+        """Assign a membership tier to the alumni"""
+        from django.utils import timezone
+        
+        if payment_date is None:
+            payment_date = timezone.now().date()
+        
+        self.current_membership_tier = tier
+        
+        # Use the is_lifetime method from MembershipTier
+        self.is_lifetime_member = tier.is_lifetime()
+        
+        # Set expiry date if not lifetime
+        if not self.is_lifetime_member:
+            self.membership_expiry = tier.get_expiry_date(payment_date)
+        else:
+            self.membership_expiry = None
+        
+        # Generate membership number if not exists
+        if not self.membership_number:
+            self.membership_number = self.generate_membership_number()  # Now this works as a method call
+        
+        self.save()
 
-    def save(self, *args, **kwargs):
-        # Auto-create membership number if not exists and membership is active
-        if not self.membership_number and self.current_membership_tier and self.is_active:
-            self.membership_number = self.generate_membership_number()
-        super().save(*args, **kwargs)
+    def renew_membership(self, tier, payment_date=None):
+        """Renew or upgrade membership"""
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        if payment_date is None:
+            payment_date = timezone.now().date()
+        
+        # If renewing same tier, extend expiry
+        if self.current_membership_tier == tier and not tier.is_lifetime():
+            if self.membership_expiry and self.membership_expiry > payment_date:
+                # Extend from current expiry
+                self.membership_expiry = self.membership_expiry + timedelta(days=tier.duration_months * 30)
+            else:
+                # Start from payment date
+                self.membership_expiry = tier.get_expiry_date(payment_date)
+        else:
+            # New tier assignment
+            self.assign_membership_tier(tier, payment_date)
+        
+        self.save()
+
+    def upgrade_to_lifetime(self, lifetime_tier):
+        """Upgrade to lifetime membership"""
+        if not lifetime_tier.is_lifetime():
+            raise ValueError("Selected tier is not a lifetime membership")
+        
+        self.current_membership_tier = lifetime_tier
+        self.is_lifetime_member = True
+        self.membership_expiry = None
+        self.save()
+
+
+
+        
+class Payment(models.Model):
+    PAYMENT_METHODS = [
+        ('mpesa', 'M-Pesa'),
+        ('credit_card', 'Credit/Debit Card'),
+        ('bank_transfer', 'Bank Transfer'),
+        ('cash', 'Cash'),
+        ('cheque', 'Cheque'),
+    ]
+    
+    PAYMENT_STATUS = [
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+        ('refunded', 'Refunded'),
+        ('pending_verification', 'Pending Verification'),
+    ]
+    
+    # Relationships
+    alumni = models.ForeignKey(
+        'AlumniProfile',
+        on_delete=models.CASCADE,
+        related_name='payments'
+    )
+    membership_tier = models.ForeignKey(
+        'MembershipTier',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='payments'
+    )
+    
+    # Payment details
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(Decimal('0.01'))]
+    )
+    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHODS)
+    payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS, default='pending')
+    
+    # Transaction references
+    transaction_reference = models.CharField(max_length=100, unique=True, default=uuid.uuid4)
+    mpesa_receipt_number = models.CharField(max_length=50, blank=True, null=True)
+    bank_reference = models.CharField(max_length=100, blank=True, null=True)
+    
+    # Payment details based on method
+    mpesa_number = models.CharField(max_length=15, blank=True, null=True)
+    card_last_four = models.CharField(max_length=4, blank=True, null=True)
+    bank_name = models.CharField(max_length=100, blank=True, null=True)
+    
+    # Timestamps
+    payment_date = models.DateTimeField(default=timezone.now)
+    completion_date = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    # Additional info
+    notes = models.TextField(blank=True)
+    processed_by = models.ForeignKey(
+        'auth.User',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='processed_payments'
+    )
+    
+    class Meta:
+        ordering = ['-payment_date']
+        indexes = [
+            models.Index(fields=['transaction_reference']),
+            models.Index(fields=['payment_status']),
+            models.Index(fields=['payment_date']),
+        ]
+    
+    def __str__(self):
+        return f"{self.alumni.full_name} - {self.amount} - {self.payment_status}"
+    
+    # ---------- Internal logging helper ----------
+    def _log_transaction(self, trans_type, request_data=None, response_data=None, error_msg=None):
+        """Create a PaymentTransaction record for audit trail."""
+        PaymentTransaction.objects.create(
+            payment=self,
+            transaction_type=trans_type,
+            request_data=request_data or {},
+            response_data=response_data or {},
+            error_message=error_msg or '',
+            status_code=200 if not error_msg else 400
+        )
+    
+    # ---------- Explicit status change methods (use these in code) ----------
+    def mark_as_completed(self, receipt_number=None):
+        """Mark payment as completed and optionally store receipt."""
+        old_status = self.payment_status
+        self.payment_status = 'completed'
+        self.completion_date = timezone.now()
+        
+        if receipt_number:
+            if self.payment_method == 'mpesa':
+                self.mpesa_receipt_number = receipt_number
+            elif self.payment_method == 'bank_transfer':
+                self.bank_reference = receipt_number
+        
+        self.save(update_fields=['payment_status', 'completion_date', 'mpesa_receipt_number', 'bank_reference'])
+        self._log_transaction('complete', request_data={'receipt': receipt_number})
+    
+    def mark_as_failed(self, reason=None):
+        """Mark payment as failed with optional reason."""
+        old_status = self.payment_status
+        self.payment_status = 'failed'
+        if reason:
+            self.notes = reason
+        self.save(update_fields=['payment_status', 'notes'])
+        self._log_transaction('fail', error_msg=reason)
+    
+    def mark_as_pending_verification(self):
+        """Use for bank transfers waiting admin approval."""
+        self.payment_status = 'pending_verification'
+        self.save(update_fields=['payment_status'])
+        self._log_transaction('verify', request_data={'status': 'pending_verification'})
+    
+    def mark_as_refunded(self, reason=None):
+        self.payment_status = 'refunded'
+        if reason:
+            self.notes = reason
+        self.save(update_fields=['payment_status', 'notes'])
+        self._log_transaction('refund', error_msg=reason)
+    
+    # ---------- Properties ----------
+    @property
+    def is_completed(self):
+        return self.payment_status == 'completed'
+    
+    @property
+    def is_pending(self):
+        return self.payment_status in ['pending', 'pending_verification']
+
+
+
+class PaymentTransaction(models.Model):
+    TRANSACTION_TYPES = [
+        ('initiate', 'Initiated'),
+        ('callback', 'Callback Received'),
+        ('verify', 'Verification'),
+        ('complete', 'Completed'),
+        ('fail', 'Failed'),
+        ('refund', 'Refunded'),
+        ('status_change', 'Status Changed'),
+    ]
+    
+    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name='transactions')
+    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
+    request_data = models.JSONField(null=True, blank=True)
+    response_data = models.JSONField(null=True, blank=True)
+    status_code = models.IntegerField(null=True, blank=True)
+    error_message = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['created_at']
+        indexes = [
+            models.Index(fields=['payment', 'created_at']),
+        ]
+    
+    def __str__(self):
+        return f"{self.payment} - {self.transaction_type} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"

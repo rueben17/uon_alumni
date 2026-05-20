@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static crispy_forms_tags %}
+
+
+
+<title>{% block title %} UoNAA | Alumni Membership Payment  {% endblock %}</title>
+
+{% block content %}
+<div class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px;">
+    {% include "snippets/navbar.html" %}
+    {% include "snippets/banner.html" %}
+
+    <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm flex flex-col items-center justify-center">
+        <div class="container px-6 m-auto">
+            <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                <div class="col-span-4 lg:col-span-6">
+                    Column 1/2
+                </div>
+                <div class="col-span-4 lg:col-span-6">
+                    
+                    <!-- Using crispy forms - much cleaner! -->
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        
+                        <h3 class="text-lg font-semibold mb-4">Membership Registration</h3>
+                        
+                        <!-- Option 1: Render all fields with crispy -->
+                        {{alumni.email}}
+                         {{ form|crispy }} 
+   
+                         
+                        <div class="w-full mt-4">
+                            <button type="submit" class="w-full cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                               Complete Membership Registration
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>        
+    
+    {% include "snippets/footer.html" %}
+</div>
+{% endblock content %}

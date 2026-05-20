@@ -68,14 +68,11 @@ class DepartmentAdmin(admin.ModelAdmin):
     list_display = ['faculty','name', ]
     list_filter = [ 'faculty' ] #, 
 
-
 @admin.register(Chapter)
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ['name', 'faculty','year_launched', 'slug']
     list_filter = [ 'faculty' ] #,
     prepopulated_fields = { 'slug': ('name',)} 
-
-
 
 @admin.register(Executive)
 class ExecutiveAdmin(admin.ModelAdmin):
@@ -92,56 +89,13 @@ class MembershipTierAdmin(admin.ModelAdmin):
     list_filter = ['tier_type', 'is_active']
 
 
-# @admin.register(AlumniProfile)
-# class AlumniProfileAdmin(admin.ModelAdmin):
-#     list_display = ['full_name', 'user_link', 'email', 'phone_mobile', 'membership_number', 'membership_valid_badge', 'registration_date']
-#     list_filter = ['current_membership_tier', 'is_lifetime_member', 'membership_card_issued', 'graduation_year']
-#     search_fields = ['first_name', 'surname', 'email', 'id_passport_no', 'student_reg_no', 'membership_number']
-#     readonly_fields = ['registration_date', 'last_updated']
-#     fieldsets = (
-#         ('User Account', {
-#             'fields': ('user',)
-#         }),
-#         ('Personal Information', {
-#             'fields': ('title', 'surname', 'first_name', 'middle_name', 'maiden_name',
-#                        'gender', 'date_of_birth', 'id_passport_no', 'nationality')
-#         }),
-#         ('Contact Details', {
-#             'fields': ('postal_address', 'postal_code', 'city', 'phone_mobile', 'phone_alt', 'email')
-#         }),
-#         ('Alumni Details', {
-#             'fields': ('graduation_year', 'faculty', 'student_reg_no')
-#         }),
-#         ('Membership', {
-#             'fields': ('current_membership_tier', 'membership_expiry', 'is_lifetime_member', 'membership_number',
-#                        'membership_card_issued', 'certificate_issued', 'certificate_sent', 'certificate_generated_at', 'lapel_badge_issued')
-#         }),
-#         ('Preferences & Meta', {
-#             'fields': ('receive_newsletter', 'receive_sms_alerts', 'is_active', 'registration_date', 'last_updated')
-#         }),
-#     )
+class PaymentInline(admin.TabularInline):
+    model = Payment
+    fields = ['amount', 'payment_method', 'payment_status', 'payment_date']
+    readonly_fields = ['amount', 'payment_method', 'payment_status', 'payment_date']
+    extra = 0
+    can_delete = False
 
-#     def user_link(self, obj):
-#         return format_html('<a href="/admin/auth/user/{}/change/">{}</a>', obj.user.id, obj.user.username)
-#     user_link.short_description = 'Username'
-
-#     def membership_valid_badge(self, obj):
-#         if obj.is_membership_valid:
-#             return format_html('<span style="color:green;">✓ Valid</span>')
-#         return format_html('<span style="color:red;">✗ Expired</span>')
-#     membership_valid_badge.short_description = 'Membership Status'
-
-
-
-#     def issue_membership_card(self, request, queryset):
-#         queryset.update(membership_card_issued=True)
-#         self.message_user(request, f"{queryset.count()} membership cards marked as issued.")
-#     issue_membership_card.short_description = "Issue membership card to selected"
-
-#     def mark_as_lifetime(self, request, queryset):
-#         queryset.update(is_lifetime_member=True, membership_expiry=None)
-#         self.message_user(request, f"{queryset.count()} members marked as lifetime.")
-#     mark_as_lifetime.short_description = "Mark as lifetime members"
 
 @admin.register(AlumniProfile)
 class AlumniProfileAdmin(admin.ModelAdmin):
@@ -173,6 +127,7 @@ class AlumniProfileAdmin(admin.ModelAdmin):
             'fields': ('receive_newsletter', 'receive_sms_alerts', 'is_active', 'registration_date', 'last_updated')
         }),
     )
+    inlines = [PaymentInline]
 
     def user_link(self, obj):
         return format_html('<a href="/admin/auth/user/{}/change/">{}</a>', obj.user.id, obj.user.username)
@@ -203,3 +158,51 @@ class AlumniProfileAdmin(admin.ModelAdmin):
         self.message_user(request, f"{count} member(s) marked as lifetime.")
     
     mark_as_lifetime.short_description = "Mark as lifetime members"
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'alumni', 'amount', 'payment_method', 'payment_status', 'payment_date']
+    list_filter = ['payment_status', 'payment_method']
+    search_fields = ['transaction_reference', 'alumni__first_name', 'alumni__surname', 'alumni__email']
+    readonly_fields = ['transaction_reference', 'created_at', 'updated_at']
+    fieldsets = (
+        ('Alumni & Tier', {
+            'fields': ('alumni', 'membership_tier')
+        }),
+        ('Payment Info', {
+            'fields': ('amount', 'payment_method', 'payment_status', 'transaction_reference')
+        }),
+        ('M-Pesa Details', {
+            'fields': ('mpesa_number', 'mpesa_receipt_number'),
+            'classes': ('collapse',)
+        }),
+        ('Card Details', {
+            'fields': ('card_last_four',),
+            'classes': ('collapse',)
+        }),
+        ('Bank Transfer Details', {
+            'fields': ('bank_name', 'bank_reference'),
+            'classes': ('collapse',)
+        }),
+        ('Timestamps', {
+            'fields': ('payment_date', 'completion_date', 'created_at', 'updated_at')
+        }),
+        ('Notes', {
+            'fields': ('notes',)
+        }),
+    )
+
+@admin.register(PaymentTransaction)
+class PaymentTransactionAdmin(admin.ModelAdmin):
+    list_display = ['id', 'payment', 'transaction_type', 'status_code', 'created_at']
+    list_filter = ['transaction_type']
+    search_fields = ['payment__transaction_reference', 'error_message']
+    readonly_fields = ['payment', 'transaction_type', 'request_data', 'response_data', 'status_code', 'error_message', 'created_at']
+    
+    def has_add_permission(self, request):
+        return False
+    
+    def has_delete_permission(self, request, obj=None):
+        return False
+

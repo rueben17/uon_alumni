@@ -1,4 +1,4 @@
-<div class="py-2 px-2 lg:w-1/2 ">
+{% comment %} <div class="py-2 px-2 lg:w-1/2 ">
     <a href="{{article.get_absolute_url}}" class="cursor-pointer  ">
         <div class="h-full py-2 p-1 flex items-center bg-white rounded-sm shadow transition hover:shadow-xl">
             <div class="w-12 flex-shrink-0 flex flex-col text-center leading-none">
@@ -16,4 +16,91 @@
         </div>
     </a>
 </div> 
+ {% endcomment %}
 
+
+{% comment %} <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+
+
+
+</div> {% endcomment %}
+
+
+    {% comment %} <div class="bg-amber-400">
+
+        <a href="{{article.get_absolute_url}}">
+            <img class="w-full" src="https://images.pexels.com/photos/5120892/pexels-photo-5120892.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;h=625.0&amp;sharp=10&amp;w=1000" alt="Sunset in the mountains">
+        </a>
+        <div class="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10">
+            <a href="#"
+                class="font-semibold text-lg inline-block hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2">The
+                {{article.title}}</a>
+            <p class="text-gray-500 text-sm">
+                 {{article.body|truncatewords:35}}
+            </p>
+            <p class="mt-5 text-gray-600 text-xs">
+                By
+                <a href="#" class="text-xs text-indigo-600 transition duration-500 ease-in-out">
+                    Mehdi Ahmadi
+                </a> | in <a href="#" class="text-xs text-indigo-600 transition duration-500 ease-in-out">
+                    Cooking
+                </a>, <a href="#" class="text-xs text-indigo-600 transition duration-500 ease-in-out">
+                    Recipe
+                </a>
+            </p>
+        </div>
+
+    </div> {% endcomment %}
+
+{% comment %} <article class="overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg">
+  <img alt="" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" class="h-56 w-full object-cover">
+
+  <div class="bg-white p-4 sm:p-6">
+    <time datetime="2022-10-10" class="block text-xs text-gray-500"> 10th Oct 2022 </time>
+
+    <a href="#">
+      <h3 class="mt-0.5 text-lg text-gray-900">
+       
+      </h3>
+    </a>
+
+    <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
+      {{article.body|truncatewords:35}} 
+    </p>
+  </div>
+</article> {% endcomment %}
+
+<article class="overflow-hidden bg-white rounded-sm shadow transition hover:shadow-xl hover:cursor-pointer">
+    {% if article.thumbnail %}
+        <img alt="content" class="object-cover object-top h-96 w-full" src="{{article.get_thumbnail}}">
+    {% else %}
+        <img class="object-center h-full w-full" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="{{highlighted_article.title}}" />
+    {% endif %}
+    <div class="p-4 sm:p-6">
+        <div class="flex flex-row mb-2 gap-x-3">
+            <span datetime="2022-10-10" class="block text-xs text-slate-800 font-light"><strong>Created At:</strong> {{article.created_at}} </span>  <br>
+            {% if article.author %} 
+                <span class="ml-2 block text-xs text-slate-800  font-light italic"><strong>by:</strong> {{article.author}}</span> 
+            {% else %}
+                <span class="ml-2 block text-xs text-slate-800  font-light italic"><strong>by:</strong> Admin </span> 
+            {% endif %}
+            
+        </div>
+        <a href="{{article.get_absolute_url}}">
+            <h3 class="text-sm uppercase font-medium text-black">
+                {{article.title}}
+            </h3>
+        </a>
+
+        <p class="mt-2 line-clamp-3 text-sm/relaxed text-black">
+            {{article.body|truncatewords:40}} 
+        </p>
+
+        <a href="{{article.get_absolute_url}}" class="group mt-4 inline-flex items-center gap-1 text-xs font-bold text-blue-400">
+            Read more
+            <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
+                →
+            </span>
+        </a>
+    </div>
+</article>

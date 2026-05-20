@@ -1,0 +1,71 @@
+<!-- templates/membership/register_payment.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+<title>{% block title %} UoNAA | Membership Category Registration {% endblock %}</title>
+
+
+{% block content %}
+
+        <div  class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px;important;">>
+            {% include "snippets/navbar.html" %}
+            {% include "snippets/banner.html" %}
+            
+            <section id="membership_registration" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
+                <section>
+                    <div class="container px-6 m-auto">
+                        <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                            <div class="col-span-4">
+                                
+                            </div>
+                            <div class="col-span-4  lg:col-span-8">
+                                    <h2>Complete Your Membership Registration</h2>
+                                    <p>Welcome, {{ alumni.first_name }} {{ alumni.surname }}.</p>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        
+                                        <div class="form-group">
+                                            {{ form.membership_tier.label_tag }}
+                                            <!-- Add hx-get and hx-target to load tier details -->
+                                            <select name="membership_tier" id="id_membership_tier" 
+                                                    hx-get="{% url 'home:get_tier_details' %}"
+                                                    hx-target="#tier-details"
+                                                    hx-trigger="change"
+                                                    hx-swap="innerHTML">
+                                                {% for tier in tiers %}
+                                                    <option value="{{ tier.id }}" {% if form.membership_tier.value == tier.id %}selected{% endif %}>
+                                                        {{ tier.name }} - KES {{ tier.fee }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <!-- This div will be updated by HTMX -->
+                                        <div id="tier-details">
+                                            {% if selected_tier %}
+                                                {% include "home/_tier_details.html" with tier=selected_tier %}
+                                            {% else %}
+                                                <p>Select a membership tier to see details.</p>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{ form.payment_method.label_tag }}
+                                            {{ form.payment_method }}
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success">Proceed to Payment</button>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+
+            {% include "snippets/footer.html" %}
+        </div>
+
+    
+
+{% endblock content %}

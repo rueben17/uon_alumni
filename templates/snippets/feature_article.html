@@ -1,5 +1,5 @@
 
-<article class=" overflow-hidden bg-white rounded-md shadow transition hover:shadow-xl hover:cursor-pointer">
+{% comment %} <article class=" overflow-hidden bg-white rounded-md shadow transition hover:shadow-xl hover:cursor-pointer">
       {% if featured_article.thumbnail %}
         <img src="{{featured_article.get_thumbnail}}" alt="{{featured_article.title}}" id="MainImg" class="object-top h-full w-full"/>
       {% else %}
@@ -20,4 +20,66 @@
           <a href="{{featured_article.get_absolute_url}}" class="text-xs text-blue-700">Read more</a>
         </p>
       </div>
-</article> 
+</article>  {% endcomment %}
+
+
+<div class="bg-white px-10 py-12 overflow-hidden rounded-sm shadow transition hover:shadow-xl hover:cursor-pointer">
+
+    <div class="mb-8 rounded overflow-hidden flex flex-col mx-auto">
+        <a href="{{featured_article.get_absolute_url}}"
+            class="text-4xl uppercase sm:text-4xl font-semibold inline-block text-justify transition duration-500 ease-in-out  mb-2">
+            {{featured_article.title}}
+        </a>
+
+        <div class="relative">
+            <a href="{{featured_article.get_absolute_url}}">
+                {% if featured_article.article_banner_image %}
+                    <img src="{{featured_article.get_article_banner_image}}" class=" w-full object-cover" />
+                        {% else %}
+                    <img class="object-center w-full" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="{{highlighted_article.title}}" />
+                {% endif %}
+                {% comment %} <img class="w-full" src="{{featured_article.get_thumbnail}}" alt=" {{featured_article.title}}"> {% endcomment %}
+            </a>
+            <a href="#!"
+                class="hidden absolute z-10 text-xs absolute bottom-0 left-0 bg-blue-400 px-6 m-2 py-2 text-white hover:bg-white hover:text-black  transition duration-500 ease-in-out sm:flex items-center"><span
+                    class="text-lg">|</span>&nbsp;&nbsp;<span>{{featured_article.chapter}}</span></a>
+
+            <a href="#!"
+                class="hidden absolute z-10 text-xs absolute bottom-0 right-0 bg-blue-400 px-6 m-2 py-2 text-white hover:bg-white hover:text-black  transition duration-500 ease-in-out sm:flex items-center"><span
+                    class="text-lg">|</span>&nbsp;&nbsp;<span>Read more</span></a>
+
+        </div>
+        <p class="text-black text-justify py-5 text-base leading-8">
+            {{featured_article.body}}
+        </p>
+        <div class="py-5 text-sm font-regular text-gray-900 flex">
+            <span class="mr-3 flex flex-row items-center">
+                <svg class="text-black" fill="currentColor" height="13px" width="13px" version="1.1" id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256
+                                c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128
+                                c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                            </path>
+                        </g>
+                    </g>
+                </svg>
+                <span class=" ml-2 block text-sm text-slate-800  font-light">{{featured_article.created_at}}</span></span>
+                <a href="#" class="flex flex-row items-center ">
+                    <svg class="text-black" fill="currentColor" height="16px" aria-hidden="true" role="img"
+                        focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor"
+                            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z">
+                        </path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                    </svg>
+                    <span class="ml-2 block text-sm text-slate-800  font-light">{{featured_article.author}}</span>
+                </a>
+        </div>
+        <hr>
+
+    </div>
+
+</div>

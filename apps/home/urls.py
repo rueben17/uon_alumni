@@ -2,6 +2,10 @@ from django.urls import path
 
 from apps.home.views import  (
     CoreValuesListView,
+    uon_alumni_membership_success,
+    uon_alumni_membership_status,
+    # uon_alumni_simulate_payment_processing,
+    get_tier_details,
     uon_alumni_home,
     uon_alumni_history,
     uon_alumni_exec_committee,
@@ -13,6 +17,8 @@ from apps.home.views import  (
     uon_alumni_notable,
     uon_alumni_contact_us,
     uon_alumni_register,
+    uon_alumni_profile_creation,
+    uon_alumni_register_membership,
     uon_alumni_agm,
     uon_alumni_categories_benefits,
     uon_alumni_walk,
@@ -50,6 +56,11 @@ urlpatterns = [
     path("uon-alumni-consultancy-training/", uon_alumni_consultancy_training, name="uon_alumni_consultancy_training"),
     path("contact-us/", uon_alumni_contact_us, name="uon_alumni_contact_us"),
     path("uon-alumni-register/", uon_alumni_register, name="uon_alumni_register"),
+    path("uon-alumni-profile-creation/", uon_alumni_profile_creation, name="uon_alumni_profile_creation"),
+    path("uon-alumni-membership/<int:alumni_id>/", uon_alumni_register_membership, name="uon_alumni_register_membership"),
+    # path('uon-alumni-membership/<int:alumni_id>/payment/', uon_alumni_simulate_payment_processing, name='uon_alumni_simulate_payment_processing'),
+    path('uon-alumni-membership/<int:alumni_id>/success/', uon_alumni_membership_success, name='uon_alumni_membership_success'),
+    path('uon-alumni-membership/<int:alumni_id>/status/', uon_alumni_membership_status, name='uon_alumni_membership_status'),
     path("uon-alumni-categories-benefits/", uon_alumni_categories_benefits, name="uon_alumni_categories_benefits"),
     path("uon-alumni-walk/", uon_alumni_walk, name="uon_alumni_walk"),
     path("donate/", uon_alumni_donate, name="uon_alumni_donate"),
@@ -61,6 +72,7 @@ urlpatterns = [
 
     # #Other links
     path("date_timer/", date_timer, name="date_timer"),
+    path('get-tier-details/', get_tier_details, name='get_tier_details'),
     # path('uon-alumni-uploads/<uuid:event_id>/', uon_alumni_uploads, name="uon_alumni_uploads" ),
     path("uon-alumni-news/", uon_alumni_all_news, name="uon_alumni_all_news"),
     path("article-detail/<slug:article_slug>/", uon_alumni_article_detail, name="uon_alumni_article_detail"),

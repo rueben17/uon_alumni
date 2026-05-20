@@ -1,6 +1,10 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-<title>{% block title %} UoNAA | Join Us  {% endblock %}</title>
+{% load static crispy_forms_tags %}
+
+
+{% comment %} {% extends "base.html" %}
+{% load static  crispy_forms_tags %}
+<title>{% block title %} UoNAA | User Registration  {% endblock %}</title>
 
 
 {% block content %}
@@ -9,16 +13,114 @@
             {% include "snippets/navbar.html" %}
              {% include "snippets/banner.html" %}
 
-            <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm">
-                <form action="" method="post">
-                    {{form|crispy}}      
-                    <button type="submit"></button>
-                </form>         
-            </section>
-
+                    <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm flex flex-col items-center justify-center">
+                        <div class="container px-6 m-auto">
+                            <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                                <div class="col-span-4 lg:col-span-6">
+                                    Column 1/2
+                                </div>
+                                <div class="col-span-4 lg:col-span-6">
+                                    <form action="" method="post" class="space-y-6">
+                                        {% csrf_token %}
+                                        
+                                        <h3 class="text-lg font-semibold mb-4">User Registration</h3>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div>
+                                                <label for="{{ form.username.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.username.label }}{% if form.username.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                                {{ form.username }}
+                                                {% if form.username.errors %}<div class="text-red-500 text-sm">{{ form.username.errors }}</div>{% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div>
+                                                <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.email.label }}{% if form.email.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                                {{ form.email }}
+                                                {% if form.email.errors %}<div class="text-red-500 text-sm">{{ form.email.errors }}</div>{% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <div>
+                                                <label for="{{ form.confirm_email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.confirm_email.label }}{% if form.confirm_email.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                                {{ form.confirm_email }}
+                                                {% if form.confirm_email.errors %}<div class="text-red-500 text-sm">{{ form.confirm_email.errors }}</div>{% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="{{ form.password1.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.password1.label }}{% if form.password1.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                                {{ form.password1 }}
+                                                {% if form.password1.errors %}<div class="text-red-500 text-sm">{{ form.password1.errors }}</div>{% endif %}
+                                            </div>
+                                            <div>
+                                                <label for="{{ form.password2.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.password2.label }}{% if form.password2.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                                {{ form.password2 }}
+                                                {% if form.password2.errors %}<div class="text-red-500 text-sm">{{ form.password2.errors }}</div>{% endif %}
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="{{ form.agree_terms.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">{{ form.agree_terms.label }}{% if form.agree_terms.field.required %}<span class="text-red-500">*</span>{% endif %}</label>
+                                            {{ form.agree_terms }}
+                                            {% if form.agree_terms.errors %}<div class="text-red-500 text-sm">{{ form.agree_terms.errors }}</div>{% endif %}
+                                        </div>
+                                        
+                                        <div class="w-full">
+                                            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                                Create Account
+                                            </button>
+                                        </div>
+                                    </form> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>        
+          
             {% include "snippets/footer.html" %}
         </div>
 
     
 
+{% endblock content %} {% endcomment %}
+
+
+<title>{% block title %} UoNAA | User Registration  {% endblock %}</title>
+
+{% block content %}
+<div class="container mx-auto min-h-screen space-y-1" style="max-width: 1700px;">
+    {% include "snippets/navbar.html" %}
+    {% include "snippets/banner.html" %}
+
+    <section id="register" class="max-w-7xl min-h-screen mx-auto bg-white shadow-sm border border-solid border-gray-300 p-3 rounded-sm flex flex-col items-center justify-center">
+        <div class="container px-6 m-auto">
+            <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+                <div class="col-span-4 lg:col-span-6">
+                    Column 1/2
+                </div>
+                <div class="col-span-4 lg:col-span-6">
+                    
+                    <!-- Using crispy forms - much cleaner! -->
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        
+                        <h3 class="text-lg font-semibold mb-4">User Registration</h3>
+                        
+                        <!-- Option 1: Render all fields with crispy -->
+                       
+                         {{ form|crispy }} 
+   
+                         
+                        <div class="w-full mt-4">
+                            <button type="submit" class="w-full cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </section>        
+    
+    {% include "snippets/footer.html" %}
+</div>
 {% endblock content %}
