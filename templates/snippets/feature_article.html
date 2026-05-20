@@ -35,7 +35,7 @@
             <a href="{{featured_article.get_absolute_url}}">
                 {% if featured_article.article_banner_image %}
                     <img src="{{featured_article.get_article_banner_image}}" class=" w-full object-cover" />
-                        {% else %}
+                {% else %}
                     <img class="object-center w-full" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&amp;fit=crop&amp;q=80&amp;w=1160" alt="{{highlighted_article.title}}" />
                 {% endif %}
                 {% comment %} <img class="w-full" src="{{featured_article.get_thumbnail}}" alt=" {{featured_article.title}}"> {% endcomment %}
