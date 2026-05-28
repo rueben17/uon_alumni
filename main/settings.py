@@ -31,6 +31,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     'https://www.uonalumni.or.ke',
     'http://127.0.0.1:8000',
+    'https://uonalumni.or.ke'
 ]
 
 print(f"DEBUG={DEBUG}, SSL_REDIRECT={SECURE_SSL_REDIRECT}")
